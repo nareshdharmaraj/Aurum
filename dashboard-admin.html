@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurum | Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Admin specific bar chart overrides */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 200px;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            transition: height 1s var(--ease-lux);
+            opacity: 0.7;
+        }
+
+        .bar:hover {
+            opacity: 1;
+        }
+
+        [data-theme="light"] .bar-chart {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Nav Toggle -->
+    <button class="dash-mobile-toggle-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        Menu
+    </button>
+
+    <div class="dash-layout">
+        <!-- TOP NAVIGATION BAR (Standard) -->
+        <nav class="nav">
+            <a href="index.html" class="logo">AURUM <span style="font-size: 0.5rem; background: var(--gold); color: black; padding: 2px 5px; border-radius: 2px;
+                vertical-align: middle; margin-left: 5px;">ADMIN</span></a>
+            <div class="nav-links">
+                <div class="nav-item">
+                    <a href="index.html" class="nav-link">Home <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></a>
+                    <div class="dropdown">
+                        <a href="index.html" class="dropdown-link">Home One</a>
+                        <a href="index2.html" class="dropdown-link">Home Two</a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+                <div class="nav-item"><a href="services.html" class="nav-link">Services</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">Dashboards <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></a>
+                    <div class="dropdown">
+                        <a href="dashboard-user.html" class="dropdown-link">User Dashboard</a>
+                        <a href="dashboard-admin.html" class="dropdown-link">Admin Dashboard</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-auth-wrap">
+                    <div class="nav-auth-btn">
+                        Login
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10"
+                            height="10">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </div>
+                    <div class="dropdown" style="top: 100%; right: 0; left: auto; margin-top: 10px;">
+                        <a href="login.html" class="dropdown-link">Login</a>
+                        <a href="register.html" class="dropdown-link">Register</a>
+                    </div>
+                </div>
+                <button class="action-btn" id="rtl-btn-nav" title="Toggle RTL">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="action-btn" id="theme-btn-nav" title="Toggle Theme">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <div class="menu-trigger">MENU</div>
+            </div>
+        </nav>
+
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="dash-sidebar">
+            <div class="sidebar-menu">
+                <div class="sidebar-group">
+                    <div class="sidebar-group-title">COMMAND</div>
+                    <a href="#" class="sidebar-link active" onclick="showSection('sec-overview', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        Overview
+                    </a>
+                    <a href="#" class="sidebar-link" onclick="showSection('sec-roster', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        Client Roster
+                    </a>
+                    <a href="#" class="sidebar-link" onclick="showSection('sec-status', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        System Status
+                    </a>
+                </div>
+                <div class="sidebar-group">
+                    <div class="sidebar-group-title">Intelligence</div>
+                    <a href="#" class="sidebar-link" onclick="showSection('sec-threats', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        Threat Logs
+                    </a>
+                    <a href="#" class="sidebar-link" onclick="showSection('sec-settings', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg>
+                        Settings
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div style="font-size: 0.7rem; color: #e0e0e0; display: flex; align-items: center; gap: 0.5rem;">
+                    <span
+                        style="width: 6px; height: 6px; background: #ff4444; border-radius: 50%; box-shadow: 0 0 5px #ff4444;"></span>
+                    Admin Access
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dash-main">
+            <!-- HEADER -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+                <div>
+
+                    <h2 class="h2-title" style="margin-bottom: 0; font-size: 2.5rem;">Executive Overview</h2>
+                </div>
+            </div>
+
+            <!-- SECTION: OVERVIEW -->
+            <div id="sec-overview" class="dash-section">
+                <!-- Stats Grid -->
+                <div class="grid-3"
+                    style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 3rem;">
+                    <div class="holo-card" style="padding: 2rem;">
+                        <div class="display-text">Total AUM</div>
+                        <div style="font-size: 2.5rem; font-family: var(--font-heading); color: var(--gold);">$1.2B
+                        </div>
+                        <div style="font-size: 0.8rem; color: #44ff44; margin-top: 0.5rem;">+12% vs last month</div>
+                    </div>
+                    <div class="holo-card" style="padding: 2rem;">
+                        <div class="display-text">Active Clients</div>
+                        <div style="font-size: 2.5rem; font-family: var(--font-heading);">840</div>
+                        <div style="font-size: 0.8rem; color: #44ff44; margin-top: 0.5rem;">+5 new this week</div>
+                    </div>
+                    <div class="holo-card" style="padding: 2rem;">
+                        <div class="display-text">Threat Level</div>
+                        <div style="font-size: 2.5rem; font-family: var(--font-heading); color: #44ff44;">LOW</div>
+                        <div style="display: flex; gap: 5px; margin-top: 0.5rem;">
+                            <div style="height: 5px; width: 20%; background: #44ff44;"></div>
+                            <div style="height: 5px; width: 20%; background: #333;"></div>
+                            <div style="height: 5px; width: 20%; background: #333;"></div>
+                            <div style="height: 5px; width: 20%; background: #333;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REVENUE CHART -->
+                <div class="holo-card"
+                    style="padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; margin-top: 3rem;">
+                    <h3 style="margin-bottom: 2rem; font-family: var(--font-heading);">Revenue Trajectory</h3>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 40%; background: #333;"></div>
+                        <div class="bar" style="height: 55%; background: #444;"></div>
+                        <div class="bar" style="height: 45%; background: #555;"></div>
+                        <div class="bar" style="height: 70%; background: var(--gold);"></div>
+                        <div class="bar" style="height: 60%; background: #b38728;"></div>
+                        <div class="bar" style="height: 90%; background: #fcf6ba;"></div>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; margin-top: 1rem; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">
+                        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: CLIENT ROSTER -->
+            <div id="sec-roster" class="dash-section" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">VIP Client Roster</h3>
+                <div class="glass-card" style="padding: 0;">
+                    <table class="table" style="margin: 0;">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Portfolio</th>
+                                <th>Region</th>
+                                <th>Risk Profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alexander V.</td>
+                                <td>$145M</td>
+                                <td>Europe</td>
+                                <td><span style="color: #44ff44;">Conservative</span></td>
+                            </tr>
+                            <tr>
+                                <td>Chen Enterprises</td>
+                                <td>$320M</td>
+                                <td>Asia</td>
+                                <td><span style="color: orange;">Aggressive</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sovereign Fund A</td>
+                                <td>$850M</td>
+                                <td>Middle East</td>
+                                <td><span style="color: var(--gold);">Balanced</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECTION: SYSTEM STATUS -->
+            <div id="sec-status" class="dash-section" style="display: none;">
+                <div class="grid-2" style="margin-top: 0; align-items: stretch;">
+                    <!-- SECURITY FEED -->
+                    <div class="holo-card" style="padding: 0; min-height: 250px;">
+                        <div class="terminal-box">
+                            <span class="terminal-line">[SYSTEM] Initializing secure handshake... OK</span>
+                            <span class="terminal-line" style="animation-delay: 0.2s;">[NET] Node 14 connected (Tokyo)
+                                4ms</span>
+                            <span class="terminal-line" style="animation-delay: 0.5s;">[AUTH] User admin_root login
+                                success</span>
+                            <span class="terminal-line" style="animation-delay: 1.2s;">[WARN] Encrypted packet dropped
+                                at
+                                gate 03</span>
+                            <span class="terminal-line" style="animation-delay: 1.8s;">[SYSTEM] Re-routing traffic via
+                                detailed path...</span>
+                            <span class="terminal-line" style="animation-delay: 2.5s;">[OK] Traffic normalized.
+                                Throughput:
+                                14GB/s</span>
+                            <span class="terminal-line" style="animation-delay: 3.5s;">[UPDATE] Index tickers updated.
+                                SYNC
+                                COMPLETE.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Global Nodes</h3>
+                    <div class="grid-3" style="margin-bottom: 2rem;">
+                        <!-- Simple CSS Map Representation -->
+                        <div class="glass-card" style="padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <span style="font-size: 1.5rem;">NY</span>
+                            <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></div>
+                            <span style="color: #44ff44; font-size: 0.8rem;">ONLINE</span>
+                        </div>
+                        <div class="glass-card" style="padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <span style="font-size: 1.5rem;">LN</span>
+                            <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></div>
+                            <span style="color: #44ff44; font-size: 0.8rem;">ONLINE</span>
+                        </div>
+                        <div class="glass-card" style="padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <span style="font-size: 1.5rem;">HK</span>
+                            <div style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></div>
+                            <span style="color: orange; font-size: 0.8rem;">LATENCY</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SYSTEM RESOURCES -->
+                <div style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Infrastructure Load</h3>
+                    <div class="grid-2">
+                        <div class="holo-card" style="padding: 2rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                <span>CPU Usage</span>
+                                <span style="color: #44ff44;">42%</span>
+                            </div>
+                            <div
+                                style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
+                                <div style="width: 42%; height: 100%; background: #44ff44; border-radius: 2px;"></div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; margin-bottom: 1rem; margin-top: 2rem;">
+                                <span>Memory</span>
+                                <span style="color: var(--gold);">81%</span>
+                            </div>
+                            <div
+                                style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
+                                <div style="width: 81%; height: 100%; background: var(--gold); border-radius: 2px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="holo-card" style="padding: 2rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                <span>Storage (Encrypted)</span>
+                                <span>12.4 TB / 50 TB</span>
+                            </div>
+                            <div style="display: flex; gap: 2px; height: 50px; align-items: flex-end;">
+                                <div style="width: 10px; height: 20%; background: #333;"></div>
+                                <div style="width: 10px; height: 40%; background: #333;"></div>
+                                <div style="width: 10px; height: 60%; background: #333;"></div>
+                                <div style="width: 10px; height: 45%; background: #333;"></div>
+                                <div style="width: 10px; height: 80%; background: #44ff44;"></div>
+                                <div style="width: 10px; height: 30%; background: #333;"></div>
+                                <div style="width: 10px; height: 50%; background: #333;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: THREAT LOGS -->
+            <div id="sec-threats" class="dash-section" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Flagged Threats</h3>
+                <div class="terminal-box" style="height: 400px; color: #ff4444; border-color: #ff4444;">
+                    <span class="terminal-line">[ALERT] Suspicious login attempt from IP 192.168.4.20 (Moscow)</span>
+                    <span class="terminal-line" style="animation-delay: 0.5s;">[WARN] Failed authentication: User
+                        admin_02 - 3 attempts</span>
+                    <span class="terminal-line" style="animation-delay: 1.0s;">[BLOCK] IP 192.168.4.20 has been
+                        blacklisted.</span>
+                    <span class="terminal-line" style="animation-delay: 1.5s;">[SCAN] Initiating sector scan...</span>
+                    <!-- More dummy logs -->
+                </div>
+            </div>
+
+            <!-- SECTION: SETTINGS -->
+            <div id="sec-settings" class="dash-section" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">System Configuration</h3>
+                <div class="glass-card" style="max-width: 600px; padding: 2rem;">
+                    <form>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-size: 0.8rem; margin-bottom: 0.5rem; color: #e0e0e0;">System
+                                Name</label>
+                            <input type="text" value="AURUM_CORE_V2.1"
+                                style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem; color: white;">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-size: 0.8rem; margin-bottom: 0.5rem; color: #e0e0e0;">Admin
+                                Email</label>
+                            <input type="email" value="admin@aurum.global"
+                                style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem; color: white;">
+                        </div>
+                        <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <input type="checkbox" checked id="maint">
+                            <label for="maint" style="font-size: 0.9rem;">Maintenance Mode</label>
+                        </div>
+                        <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <input type="checkbox" checked id="logs">
+                            <label for="logs" style="font-size: 0.9rem;">Verbose Logging</label>
+                        </div>
+                        <button class="btn-lux" style="width: 100%;">Update System</button>
+                    </form>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <footer class="footer"
+                    style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; margin-top: 4rem;">
+                    <div class="footer-grid">
+                        <div class="footer-brand">
+                            <h2>AURUM</h2>
+                            <p>
+                                Global Headquarters<br>
+                                400 Madison Ave, New York<br>
+                                NY 10017
+                            </p>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Firm</h4>
+                            <a href="index.html" class="footer-link">Home One</a>
+                            <a href="index2.html" class="footer-link">Home Two</a>
+                            <a href="about.html" class="footer-link">Legacy</a>
+                            <a href="services.html" class="footer-link">Expertise</a>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Connect</h4>
+                            <a href="contact.html" class="footer-link">Inquire</a>
+                            <a href="login.html" class="footer-link">Client Portal</a>
+                            <a href="#" class="footer-link">LinkedIn</a>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Legal</h4>
+                            <a href="#" class="footer-link">Privacy Policy</a>
+                            <a href="#" class="footer-link">Terms of Engagement</a>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div>&copy; 2024 Aurum Global. All rights reserved.</div>
+                        <div>Designed with Precision.</div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="main.js"></script>
+    <script>
+        function showSection(id, element) {
+            // Hide all sections
+            document.querySelectorAll('.dash-section').forEach(sec => sec.style.display = 'none');
+            // Show target section
+            document.getElementById(id).style.display = 'block';
+
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-link').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+
+            // Add fade animation
+            const target = document.getElementById(id);
+            target.style.opacity = '0';
+            setTimeout(() => {
+                target.style.transition = 'opacity 0.4s ease';
+                target.style.opacity = '1';
+            }, 10);
+
+            // Close mobile sidebar if open
+            const sidebar = document.querySelector('.dash-sidebar');
+            const toggle = document.querySelector('.dash-mobile-toggle-btn');
+            if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                if (toggle) {
+                    toggle.classList.remove('active');
+                    toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> Menu';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

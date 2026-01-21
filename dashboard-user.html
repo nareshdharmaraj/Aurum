@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurum | Client Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Mobile Nav Toggle -->
+    <button class="dash-mobile-toggle-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        Menu
+    </button>
+
+    <div class="dash-layout">
+        <!-- TOP NAVIGATION BAR (Standard) -->
+        <nav class="nav">
+            <a href="index.html" class="logo">AURUM</a>
+            <div class="nav-links">
+                <div class="nav-item">
+                    <a href="index.html" class="nav-link">Home <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></a>
+                    <div class="dropdown">
+                        <a href="index.html" class="dropdown-link">Home One</a>
+                        <a href="index2.html" class="dropdown-link">Home Two</a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+                <div class="nav-item"><a href="services.html" class="nav-link">Services</a></div>
+                <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active">Dashboards <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></a>
+                    <div class="dropdown">
+                        <a href="dashboard-user.html" class="dropdown-link">User Dashboard</a>
+                        <a href="dashboard-admin.html" class="dropdown-link">Admin Dashboard</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-auth-wrap">
+                    <div class="nav-auth-btn">
+                        Login
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10"
+                            height="10">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </div>
+                    <div class="dropdown" style="top: 100%; right: 0; left: auto; margin-top: 10px;">
+                        <a href="login.html" class="dropdown-link">Login</a>
+                        <a href="register.html" class="dropdown-link">Register</a>
+                    </div>
+                </div>
+                <button class="action-btn" id="rtl-btn-nav" title="Toggle RTL">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="action-btn" id="theme-btn-nav" title="Toggle Theme">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <div class="menu-trigger">MENU</div>
+            </div>
+        </nav>
+
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="dash-sidebar">
+            <div class="sidebar-menu">
+                <div class="sidebar-group">
+                    <div class="sidebar-group-title">Main</div>
+                    <a href="#" class="sidebar-link active" onclick="showSection('sec-overview', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        Overview
+                    </a>
+                    <a href="#" class="sidebar-link" onclick="showSection('sec-portfolio', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                        </svg>
+                        Portfolio
+                    </a>
+                    <a href="#" class="sidebar-link" onclick="showSection('sec-analytics', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                        Analytics
+                    </a>
+                </div>
+                <div class="sidebar-group">
+                    <div class="sidebar-group-title">Account</div>
+                    <a href="#" class="sidebar-link" onclick="showSection('sec-documents', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Documents
+                    </a>
+                    <a href="#" class="sidebar-link" onclick="showSection('sec-settings', this); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg>
+                        Settings
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div style="font-size: 0.7rem; color: #e0e0e0; display: flex; align-items: center; gap: 0.5rem;">
+                    <span
+                        style="width: 6px; height: 6px; background: #44ff44; border-radius: 50%; box-shadow: 0 0 5px #44ff44;"></span>
+                    Encrypted Connection
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dash-main">
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+                <div>
+                    <span class="display-text"> </span>
+                    <span class="display-text"> </span>
+                    <h2 class="h2-title" style="margin-bottom: 0; font-size: 2.5rem;">Good Morning, Elena.</h2>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem;">Market analysis suggests low volatility
+                        today.</p>
+                </div>
+                <div>
+                    <button class="btn-outline" style="border-radius: 99px; padding: 0.5rem 1.5rem;">+ New
+                        Request</button>
+                </div>
+            </div>
+
+            <!-- SECTION: OVERVIEW -->
+            <div id="sec-overview" class="dash-section">
+                <!-- Top Stats - Holographic -->
+                <div class="grid-3" style="margin-bottom: 3rem;">
+                    <div class="holo-card" style="padding: 2rem;">
+                        <span class="display-text">Active Projects</span>
+                        <div style="font-size: 3rem; font-family: var(--font-heading); color: var(--gold);">3</div>
+                    </div>
+                    <div class="holo-card" style="padding: 2rem;">
+                        <span class="display-text">Action Items</span>
+                        <div style="font-size: 3rem; font-family: var(--font-heading);">1</div>
+                    </div>
+                    <div class="holo-card" style="padding: 2rem;">
+                        <span class="display-text">Total Distribution</span>
+                        <div style="font-size: 3rem; font-family: var(--font-heading);">$2.4M</div>
+                    </div>
+                </div>
+
+                <!-- PRIVATE EVENTS -->
+                <div style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Upcoming Private Summits</h3>
+                    <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                        <div class="glass-card" style="padding: 1.5rem; position: relative; overflow: hidden;">
+                            <div
+                                style="font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                                DAVOS</div>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">The Future of Money</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Jan 24, 2026
+                            </p>
+                            <button class="btn-outline" style="font-size: 0.7rem; padding: 0.4rem 1rem;">RSVP
+                                Confirmed</button>
+                        </div>
+                        <div class="glass-card" style="padding: 1.5rem; position: relative; overflow: hidden;">
+                            <div
+                                style="font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                                TOKYO</div>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Asia-Pac Strategy</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Feb 12, 2026
+                            </p>
+                            <button class="btn-outline" style="font-size: 0.7rem; padding: 0.4rem 1rem;">Join
+                                Waitlist</button>
+                        </div>
+                        <div class="glass-card"
+                            style="padding: 1.5rem; position: relative; overflow: hidden; opacity: 0.7;">
+                            <div
+                                style="font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                                ONLINE</div>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Q1 Performance Review</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Mar 30, 2026
+                            </p>
+                            <button class="btn-outline" style="font-size: 0.7rem; padding: 0.4rem 1rem;" disabled>Invite
+                                Pending</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: PORTFOLIO -->
+            <div id="sec-portfolio" class="dash-section" style="display: none;">
+                <div class="grid-2" style="align-items: stretch; margin-bottom: 3rem;">
+                    <!-- Asset Allocation -->
+                    <div class="holo-card"
+                        style="padding: 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Allocations</h3>
+                            <p style="font-size: 0.8rem; color: #e0e0e0;">Current portfolio distribution by sector.</p>
+                        </div>
+                        <div class="chart-donut">
+                            <div class="chart-content">65%</div>
+                        </div>
+                        <div
+                            style="margin-top: 2rem; display: flex; gap: 2rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 8px; height: 8px; background: var(--gold); border-radius: 50%;">
+                                </div>
+                                <span>Sovereign Assets</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div
+                                    style="width: 8px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 50%;">
+                                </div>
+                                <span>Ventures</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Strategic Roadmap -->
+                    <div class="holo-card" style="padding: 2rem; display: flex; flex-direction: column;">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem;">Strategic Roadmap</h3>
+                        <div class="timeline-scroll">
+                            <div class="">
+                                <span class="display-text" style="color: var(--text-primary); font-size: 0.6rem;">Q3
+                                    2024</span>
+                                <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Initial Audit</h4>
+                                <p style="font-size: 0.8rem; color: #e0e0e0; width: 150px;">Complete forensic analysis
+                                    of
+                                    holding structures.</p>
+                            </div>
+                            <div class="">
+                                <span class="display-text" style="color: var(--text-primary); font-size: 0.6rem;">Q4
+                                    2024</span>
+                                <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Market Entry</h4>
+                                <p style="font-size: 0.8rem; color: #e0e0e0; width: 150px;">First tranche capital
+                                    deployment
+                                    into Asian markets.</p>
+                            </div>
+                            <div class="">
+                                <span class="display-text" style="color: var(--text-primary); font-size: 0.6rem;">Q2
+                                    2025</span>
+                                <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Expansion</h4>
+                                <p style="font-size: 0.8rem; color: #e0e0e0; width: 150px;">Scale operations to reach
+                                    $10B
+                                    AUM
+                                    target.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: ANALYTICS -->
+            <div id="sec-analytics" class="dash-section" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Recent Intelligence</h3>
+                <div class="glass-card" style="padding: 0;">
+                    <table class="table" style="margin: 0;">
+                        <thead>
+                            <tr>
+                                <th>Directive</th>
+                                <th>Category</th>
+                                <th>Timestamp</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alpha Initiative</td>
+                                <td>Strategy Deck</td>
+                                <td>Oct 24, 2024</td>
+                                <td><span class="status-pill status-active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Project Beta</td>
+                                <td>Financial Audit</td>
+                                <td>Oct 22, 2024</td>
+                                <td><span class="status-pill status-pending">Review</span></td>
+                            </tr>
+                            <tr>
+                                <td>Gamma Expansion</td>
+                                <td>Market Research</td>
+                                <td>Oct 15, 2024</td>
+                                <td><span class="status-pill status-active">Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECTION: DOCUMENTS -->
+            <div id="sec-documents" class="dash-section" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Secure Documents</h3>
+                <div class="grid-3">
+                    <div class="glass-card" style="padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" width="24"
+                            height="24">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        <div>
+                            <h4 style="font-size: 0.9rem;">Q3 Financial Report.pdf</h4>
+                            <span style="font-size: 0.7rem; color: #e0e0e0;">2.4 MB</span>
+                        </div>
+                        <button class="btn-outline"
+                            style="margin-left: auto; padding: 0.2rem 0.6rem; font-size: 0.7rem;">Download</button>
+                    </div>
+                    <div class="glass-card" style="padding: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" width="24"
+                            height="24">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        <div>
+                            <h4 style="font-size: 0.9rem;">Investment Strategy.pdf</h4>
+                            <span style="font-size: 0.7rem; color: #e0e0e0;">1.1 MB</span>
+                        </div>
+                        <button class="btn-outline"
+                            style="margin-left: auto; padding: 0.2rem 0.6rem; font-size: 0.7rem;">Download</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: SETTINGS -->
+            <div id="sec-settings" class="dash-section" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Account Settings</h3>
+                <div class="glass-card" style="max-width: 600px; padding: 2rem;">
+                    <form>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-size: 0.8rem; margin-bottom: 0.5rem; color: #e0e0e0;">Full
+                                Name</label>
+                            <input type="text" value="Elena V."
+                                style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem; color: white;">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label
+                                style="display: block; font-size: 0.8rem; margin-bottom: 0.5rem; color: #e0e0e0;">Email
+                                Address</label>
+                            <input type="email" value="elena@aurum.global"
+                                style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem; color: white;">
+                        </div>
+                        <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                            <input type="checkbox" checked id="notif">
+                            <label for="notif" style="font-size: 0.9rem;">Enable Two-Factor Authentication</label>
+                        </div>
+                        <button class="btn-lux" style="width: 100%;">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <footer class="footer"
+                    style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; margin-top: 4rem;">
+                    <div class="footer-grid">
+                        <div class="footer-brand">
+                            <h2>AURUM</h2>
+                            <p>
+                                Global Headquarters<br>
+                                400 Madison Ave, New York<br>
+                                NY 10017
+                            </p>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Firm</h4>
+                            <a href="index.html" class="footer-link">Home One</a>
+                            <a href="index2.html" class="footer-link">Home Two</a>
+                            <a href="about.html" class="footer-link">Legacy</a>
+                            <a href="services.html" class="footer-link">Expertise</a>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Connect</h4>
+                            <a href="contact.html" class="footer-link">Inquire</a>
+                            <a href="login.html" class="footer-link">Client Portal</a>
+                            <a href="#" class="footer-link">LinkedIn</a>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Legal</h4>
+                            <a href="#" class="footer-link">Privacy Policy</a>
+                            <a href="#" class="footer-link">Terms of Engagement</a>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div>&copy; 2024 Aurum Global. All rights reserved.</div>
+                        <div>Designed with Precision.</div>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="main.js"></script>
+    <script>
+        function showSection(id, element) {
+            // Hide all sections
+            document.querySelectorAll('.dash-section').forEach(sec => sec.style.display = 'none');
+            // Show target section
+            document.getElementById(id).style.display = 'block';
+
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-link').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+
+            // Add fade animation
+            const target = document.getElementById(id);
+            target.style.opacity = '0';
+            setTimeout(() => {
+                target.style.transition = 'opacity 0.4s ease';
+                target.style.opacity = '1';
+            }, 10);
+
+            // Close mobile sidebar if open
+            const sidebar = document.querySelector('.dash-sidebar');
+            const toggle = document.querySelector('.dash-mobile-toggle-btn');
+            if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                if (toggle) {
+                    toggle.classList.remove('active');
+                    toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> Menu';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
