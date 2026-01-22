@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURUM | Innovation Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            min-height: 100vh;
+            padding-top: 90px;
+        }
+
+        .hero-text {
+            padding: 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-visual {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s;
+        }
+
+        .hero-visual:hover img {
+            transform: scale(1.05);
+        }
+
+        .tech-card {
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(5, 5, 5, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        [data-theme="light"] .hero-text {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .tech-card {
+            border-color: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                height: 50vh;
+                order: -1;
+            }
+
+            .hero-text {
+                padding: 3rem;
+                border-right: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise"></div>
+    <nav class="nav">
+        <a href="index.html" class="logo">AURUM</a>
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg></a>
+                <div class="dropdown">
+                    <a href="index.html" class="dropdown-link">Home One</a>
+                    <a href="index2.html" class="dropdown-link">Home Two</a>
+                </div>
+            </div>
+            <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+            <div class="nav-item"><a href="services.html" class="nav-link">Services</a></div>
+            <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">Dashboards <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg></a>
+                <div class="dropdown">
+                    <a href="dashboard-user.html" class="dropdown-link">User Dashboard</a>
+                    <a href="dashboard-admin.html" class="dropdown-link">Admin Dashboard</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <div class="nav-auth-wrap">
+                <div class="nav-auth-btn">
+                    Login
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+                <div class="dropdown" style="top: 100%; right: 0; left: auto; margin-top: 10px;">
+                    <a href="login.html" class="dropdown-link">Login</a>
+                    <a href="register.html" class="dropdown-link">Register</a>
+                </div>
+            </div>
+            <button class="action-btn" id="rtl-btn-nav" title="Toggle RTL">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+            </button>
+            <button class="action-btn" id="theme-btn-nav" title="Toggle Theme">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <div class="menu-trigger">MENU</div>
+        </div>
+    </nav>
+
+    <div class="hero-split">
+        <div class="hero-text">
+            <h1 class="h1-hero reveal-up">Architects of<br><span style="color: var(--gold);">Tomorrow.</span></h1>
+            <p class="p-lead reveal-up" style="margin-top: 3rem;">
+                Strategies for the post-digital age. We blend deep human insight with algorithmic precision.
+            </p>
+            <div style="margin-top: 4rem;" class="reveal-up">
+                <a href="contact.html" class="btn-lux">Start Project</a>
+            </div>
+        </div>
+        <div class="hero-visual reveal-up">
+            <img src="Assets/chrome.png" alt="Innovation">
+        </div>
+    </div>
+
+    <!-- MARQUEE CREATIVE -->
+    <div class="marquee-container reveal-up">
+        <div class="marquee-content">
+            <span class="marquee-item">QUANTUM COMPUTING</span>
+            <span class="marquee-item">SYNTHETIC BIOLOGY</span>
+            <span class="marquee-item">FUSION ENERGY</span>
+            <span class="marquee-item">NEURAL INTERFACES</span>
+            <span class="marquee-item">SPACE MINING</span>
+            <span class="marquee-item">QUANTUM COMPUTING</span>
+            <span class="marquee-item">SYNTHETIC BIOLOGY</span>
+            <span class="marquee-item">FUSION ENERGY</span>
+        </div>
+    </div>
+
+    <!-- R&D LABS -->
+    <section class="section-pad">
+        <div class="container">
+            <div
+                style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem;">
+                <h2 class="h2-title reveal-up" style="margin-bottom: 0;">Aurum Labs</h2>
+                <p class="reveal-up" style="color: var(--text-muted); max-width: 400px; text-align: right;">Experimental
+                    divisions
+                    dedicated to rewriting the laws of finance.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="tech-card reveal-up" style="position: relative; overflow: hidden;">
+                    <img src="Assets/innovation.png" alt="Neural Architecture"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; z-index: 0; filter: grayscale(100%);">
+                    <div style="position: relative; z-index: 1;">
+                        <h3 style="font-family: var(--font-heading); color: var(--gold); margin-bottom: 1rem;">Project
+                            Neural</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">
+                            Developing proprietary LLMs trained specifically on 200 years of market data to predict
+                            macroeconomic shifts with 94% accuracy.
+                        </p>
+                        <ul
+                            style="list-style: none; padding: 0; font-size: 0.8rem; color: var(--text-muted); font-family: monospace;">
+                            <li style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.5rem 0;">STATUS: BETA
+                            </li>
+                            <li style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.5rem 0;">ACCESS: TIER
+                                1
+                                ONLY</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tech-card reveal-up" style="transition-delay: 0.1s;">
+                    <h3 style="font-family: var(--font-heading); color: var(--gold); margin-bottom: 1rem;">Liquidity X
+                    </h3>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">
+                        A decentralized dark pool infrastructure allowing for institutional-grade transfers without
+                        slippage or market signaling.
+                    </p>
+                    <ul
+                        style="list-style: none; padding: 0; font-size: 0.8rem; color: var(--text-muted); font-family: monospace;">
+                        <li style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.5rem 0;">STATUS: LIVE</li>
+                        <li style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.5rem 0;">VOLUME: $400M /
+                            DAY</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY METRICS -->
+    <section class="section-pad" style="border-top: 1px solid rgba(255,255,255,0.05); padding-bottom: 4rem;">
+        <div class="container">
+            <div class="grid-3" style="text-align: center;">
+                <div class="reveal-up">
+                    <div
+                        style="font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--gold); margin-bottom: 0.5rem;">
+                        $42B+</div>
+                    <div
+                        style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);">
+                        Assets Under Management</div>
+                </div>
+                <div class="reveal-up" style="transition-delay: 0.1s;">
+                    <div
+                        style="font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--gold); margin-bottom: 0.5rem;">
+                        0.04ms</div>
+                    <div
+                        style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);">
+                        Execution Latency</div>
+                </div>
+                <div class="reveal-up" style="transition-delay: 0.2s;">
+                    <div
+                        style="font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--gold); margin-bottom: 0.5rem;">
+                        12</div>
+                    <div
+                        style="font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);">
+                        Global Hubs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE ALGORITHMIC CORE -->
+    <section class="section-pad" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="margin-bottom: 4rem;">The Machine Intelligence</h2>
+            <div class="grid-3">
+                <div class="reveal-up"
+                    style="padding: 2rem; border: 1px solid rgba(255,255,255,0.05); background: var(--bg-void);">
+                    <div
+                        style="font-size: 3rem; color: var(--gold); margin-bottom: 1rem; font-family: var(--font-heading);">
+                        01</div>
+                    <h3 style="font-family: var(--font-body); font-size: 1.2rem; margin-bottom: 1rem;">Data Ingestion
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        Processing 4 petabytes of unstructured financial data daily, including satellite imagery,
+                        shipping logs, and patent filings.
+                    </p>
+                </div>
+                <div class="reveal-up"
+                    style="padding: 2rem; border: 1px solid rgba(255,255,255,0.05); background: var(--bg-void); transition-delay: 0.1s;">
+                    <div
+                        style="font-size: 3rem; color: var(--gold); margin-bottom: 1rem; font-family: var(--font-heading);">
+                        02</div>
+                    <h3 style="font-family: var(--font-body); font-size: 1.2rem; margin-bottom: 1rem;">Sentiment
+                        Analysis</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        Proprietary NLPs decode central bank minutes and geopolitical rhetoric to predict policy shifts
+                        before they are announced.
+                    </p>
+                </div>
+                <div class="reveal-up"
+                    style="padding: 2rem; border: 1px solid rgba(255,255,255,0.05); background: var(--bg-void); transition-delay: 0.2s;">
+                    <div
+                        style="font-size: 3rem; color: var(--gold); margin-bottom: 1rem; font-family: var(--font-heading);">
+                        03</div>
+                    <h3 style="font-family: var(--font-body); font-size: 1.2rem; margin-bottom: 1rem;">Execution</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        Orders split across dark pools and fragmented exchanges to mask intent, achieving near-zero
+                        market impact.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GLOBAL NEXUS -->
+    <section class="section-pad">
+        <div class="container">
+            <div class="grid-2">
+                <div class="reveal-up">
+                    <h2 class="h2-title">Global <span style="color: var(--gold);">Nexus</span></h2>
+                    <p class="p-lead" style="margin-bottom: 2rem; font-size: 1rem;">
+                        From the high-frequency servers in New Jersey to the quantum labs in Singapore, our
+                        infrastructure is ubiquitous. We operate where the market sleeps.
+                    </p>
+                    <ul style="list-style: none; padding: 0; font-family: monospace; font-size: 0.9rem;">
+                        <li
+                            style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1rem 0; display: flex; justify-content: space-between; align-items: center;">
+                            <span>NEW YORK // HQ</span>
+                            <span style="color: var(--gold);">ONLINE</span>
+                        </li>
+                        <li
+                            style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1rem 0; display: flex; justify-content: space-between; align-items: center;">
+                            <span>ZURICH // CRYPTO VALLEY</span>
+                            <span style="color: var(--gold);">ONLINE</span>
+                        </li>
+                        <li
+                            style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1rem 0; display: flex; justify-content: space-between; align-items: center;">
+                            <span>SINGAPORE // QUANTUM</span>
+                            <span style="color: var(--gold);">ONLINE</span>
+                        </li>
+                        <li
+                            style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1rem 0; display: flex; justify-content: space-between; align-items: center;">
+                            <span>TOKYO // APAC</span>
+                            <span style="color: var(--gold);">ONLINE</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="reveal-up"
+                    style="height: 400px; border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;">
+                    <img src="Assets/global_nexus.png" alt="Global Network Infrastructure"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                    <div
+                        style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4));">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW TESTIMONIALS SECTION -->
+    <section class="section-pad" style="background: rgba(255,255,255,0.02); position: relative; overflow: hidden;">
+        <img src="Assets/impact_section_bg.png"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.1; z-index: 0; filter: grayscale(100%) contrast(1.2);">
+        <div class="container" style="position: relative; z-index: 1;">
+            <h2 class="h2-title reveal-up" style="text-align: center; margin-bottom: 5rem;">Verified Impact</h2>
+            <div class="grid-2">
+                <div class="testimonial-card reveal-up">
+                    <div class="quote-icon">"</div>
+                    <p class="p-lead" style="font-size: 1.1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                        Aurum's algorithmic approach to capital allocation has protected our family office through three
+                        consecutive market downturns. Their foresight is uncanny.
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <img src="Assets/avatar_thomas_gen.png"
+                            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid var(--gold);"
+                            alt="Thomas K.">
+                        <div>
+                            <div style="font-family: var(--font-heading); color: var(--gold);">Thomas K.</div>
+                            <div
+                                style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">
+                                Chief of Investment, K-Group</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal-up" style="transition-delay: 0.1s;">
+                    <div class="quote-icon">"</div>
+                    <p class="p-lead" style="font-size: 1.1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                        We engaged Aurum Labs to modernize our liquidity infrastructure. The result was a 40% efficiency
+                        increase and total anonymity in our transactions.
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <img src="Assets/avatar_sarah_gen.png"
+                            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid var(--gold);"
+                            alt="Sarah J.">
+                        <div>
+                            <div style="font-family: var(--font-heading); color: var(--gold);">Sarah J.</div>
+                            <div
+                                style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">
+                                Director, Apex Ventures</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="section-pad">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="text-align: center; margin-bottom: 4rem;">Venture Portfolio</h2>
+            <div class="grid-3"
+                style="display: grid; gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1);">
+                <!-- Use standard grid-3 from CSS but custom content within -->
+                <div
+                    style="background: var(--bg-void); padding: 3rem; text-align: center; display: flex; align-items: center; justify-content: center; height: 150px;">
+                    <span
+                        style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.1em;">AEROSPACE</span>
+                </div>
+                <div
+                    style="background: var(--bg-void); padding: 3rem; text-align: center; display: flex; align-items: center; justify-content: center; height: 150px;">
+                    <span
+                        style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.1em;">CARBON</span>
+                </div>
+                <div
+                    style="background: var(--bg-void); padding: 3rem; text-align: center; display: flex; align-items: center; justify-content: center; height: 150px;">
+                    <span
+                        style="font-family: var(--font-heading); font-size: 1.5rem; letter-spacing: 0.1em;">SYNTHETICS</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="services.html" class="p-lead"
+                    style="font-size: 0.9rem; color: var(--gold); text-decoration: none;">View Full Investment Thesis
+                    &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="section-pad" style="background: var(--gold); color: black;">
+        <div class="container" style="text-align: center;">
+            <h2 class="h2-title reveal-up" style="color: #000; margin-bottom: 1.5rem; border-color: #000;">Join the
+                Inner Circle</h2>
+            <p class="reveal-up"
+                style="color: #222; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Exclusive insights. Market predictions. Early access to beta protocols.
+                <br><strong>Warning: Membership is capped at 500 entities.</strong>
+            </p>
+            <form class="reveal-up"
+                style="max-width: 600px; margin: 0 auto; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                <input type="email" placeholder="ENTER PROTOCOL ID (EMAIL)"
+                    style="flex: 1; min-width: 250px; padding: 1.2rem; background: rgba(255,255,255,0.2); border: 1px solid rgba(0,0,0,0.2); outline: none; color: #000; font-family: monospace; text-transform: uppercase;">
+                <button type="submit"
+                    style="padding: 1.2rem 3rem; background: #000; color: var(--gold); border: none; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; flex-shrink: 0; min-width: 150px;">
+                    Initialize
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: FUTURE ROADMAP -->
+    <section class="section-pad"
+        style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="text-align: center; margin-bottom: 5rem;">2030 Roadmap</h2>
+            <div class="grid-3">
+                <div class="reveal-up" style="border-left: 1px solid var(--gold); padding: 2rem;">
+                    <h4 style="color: var(--gold); margin-bottom: 1rem;">PHASE 01</h4>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Neural Sovereignty</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Complete integration of LLM-driven
+                        macro-economic
+                        prediction models into all core funds.</p>
+                </div>
+                <div class="reveal-up"
+                    style="border-left: 1px solid var(--gold); padding: 2rem; transition-delay: 0.1s;">
+                    <h4 style="color: var(--gold); margin-bottom: 1rem;">PHASE 02</h4>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Quantum Resistance</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Transitioning all partner secure
+                        communications and
+                        asset ledgers to post-quantum encryption protocols.</p>
+                </div>
+                <div class="reveal-up"
+                    style="border-left: 1px solid var(--gold); padding: 2rem; transition-delay: 0.2s;">
+                    <h4 style="color: var(--gold); margin-bottom: 1rem;">PHASE 03</h4>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Off-World Allocation</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">First institutional vehicle dedicated to
+                        extraterrestrial
+                        resource mining and infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: RESEARCH ARCHIVES -->
+    <section class="section-pad" style="background: var(--bg-void);">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem;">
+                <h2 class="h2-title reveal-up" style="margin-bottom: 0;">Research Archives</h2>
+                <a href="#" class="reveal-up" style="color: var(--gold); text-decoration: none; font-size: 0.8rem;">VIEW
+                    ALL PAPERS &rarr;</a>
+            </div>
+            <div class="grid-2">
+                <div class="reveal-up"
+                    style="padding: 2.5rem; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.01);">
+                    <div
+                        style="font-family: monospace; color: var(--text-muted); font-size: 0.7rem; margin-bottom: 1rem;">
+                        [ PAPER
+                        #88-A ]</div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1rem;">The Halving of
+                        Modern Finance</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem;">A deep dive into how
+                        liquidity is
+                        fragmenting across decentralized networks and its impact on volatility.</p>
+                    <a href="#" style="color: var(--gold); text-decoration: none; font-size: 0.8rem;">DOWNLOAD PDF</a>
+                </div>
+                <div class="reveal-up"
+                    style="padding: 2.5rem; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.01); transition-delay: 0.1s;">
+                    <div
+                        style="font-family: monospace; color: var(--text-muted); font-size: 0.7rem; margin-bottom: 1rem;">
+                        [ PAPER
+                        #92-C ]</div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1rem;">Synthetic Life
+                        as an Asset Class</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem;">Modeling the return on
+                        investment
+                        for
+                        longevity therapeutics and custom genetic architecture.</p>
+                    <a href="#" style="color: var(--gold); text-decoration: none; font-size: 0.8rem;">DOWNLOAD PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>AURUM</h2>
+                <p>Global Headquarters<br>400 Madison Ave, New York<br>NY 10017</p>
+            </div>
+            <div class="footer-col">
+                <h4>Firm</h4>
+                <a href="index.html" class="footer-link">Home One</a>
+                <a href="index2.html" class="footer-link">Home Two</a>
+                <a href="about.html" class="footer-link">Legacy</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="contact.html" class="footer-link">Inquire</a>
+                <a href="login.html" class="footer-link">Client Portal</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2024 Aurum Global.</div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>

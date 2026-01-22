@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURUM | Client Access</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="noise"></div>
+    <div class="silk-overlay"></div>
+    <nav class="nav">
+        <a href="index.html" class="logo">AURUM</a>
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg></a>
+                <div class="dropdown">
+                    <a href="index.html" class="dropdown-link">Home One</a>
+                    <a href="index2.html" class="dropdown-link">Home Two</a>
+                </div>
+            </div>
+            <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+            <div class="nav-item"><a href="services.html" class="nav-link">Services</a></div>
+            <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">Dashboards <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg></a>
+                <div class="dropdown">
+                    <a href="dashboard-user.html" class="dropdown-link">User Dashboard</a>
+                    <a href="dashboard-admin.html" class="dropdown-link">Admin Dashboard</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <div class="nav-auth-wrap">
+                <div class="nav-auth-btn">
+                    Login
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+                <div class="dropdown" style="top: 100%; right: 0; left: auto; margin-top: 10px;">
+                    <a href="login.html" class="dropdown-link">Login</a>
+                    <a href="register.html" class="dropdown-link">Register</a>
+                </div>
+            </div>
+            <button class="action-btn" id="rtl-btn-nav" title="Toggle RTL">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+            </button>
+            <button class="action-btn" id="theme-btn-nav" title="Toggle Theme">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <div class="menu-trigger">MENU</div>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box reveal-up">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 class="h2-title" style="font-size: 1.5rem;">Secure Access</h2>
+                <p class="p-lead" style="font-size: 0.8rem; margin: 0 auto;">Enter your credentials to access the vault.
+                </p>
+            </div>
+
+            <form>
+                <div style="margin-bottom: 2rem;">
+                    <label class="auth-label">Identity</label>
+                    <input type="text" class="auth-input" placeholder="ID-XXXX">
+                </div>
+                <div style="margin-bottom: 3rem;">
+                    <label class="auth-label">Key</label>
+                    <input type="password" class="auth-input" placeholder="••••••••">
+                </div>
+                <button type="button" onclick="window.location.href='dashboard-user.html'" class="btn-lux"
+                    style="width: 100%;">Authenticate</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="auth-link">Lost Access Key?</a>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding-bottom: 4rem; opacity: 0.5; font-size: 0.7rem;">
+        <p>SECURE: 256-BIT ENCRYPTION ACTIVE</p>
+        <p>Your session is being monitored for quality and security purposes.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>AURUM</h2>
+                <p>Global Headquarters<br>400 Madison Ave, New York<br>NY 10017</p>
+            </div>
+            <div class="footer-col">
+                <h4>Firm</h4><a href="index.html" class="footer-link">Home</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2024 Aurum Global.</div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>

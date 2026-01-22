@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURUM | Private Capital</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .news-card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.01);
+            transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        @media(max-width: 768px) {
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        /* New overrides for specific elements in HTML that had inline styles */
+        [data-theme="light"] .stat-grid {
+            border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        [data-theme="light"] .stat-item {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .news-card {
+            border-color: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="light"] .news-card:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="light"] .partners-grid {
+            filter: grayscale(1) invert(1);
+            /* Invert white logos to black if they were images, but here text is fine, just needs opacity fix */
+            opacity: 0.8 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise"></div>
+    <div class="silk-overlay"></div>
+
+    <nav class="nav">
+        <a href="index.html" class="logo">AURUM</a>
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link active">Home <svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg></a>
+                <div class="dropdown">
+                    <a href="index.html" class="dropdown-link">Home One</a>
+                    <a href="index2.html" class="dropdown-link">Home Two</a>
+                </div>
+            </div>
+            <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+            <div class="nav-item"><a href="services.html" class="nav-link">Services</a></div>
+            <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">Dashboards <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg></a>
+                <div class="dropdown">
+                    <a href="dashboard-user.html" class="dropdown-link">User Dashboard</a>
+                    <a href="dashboard-admin.html" class="dropdown-link">Admin Dashboard</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <div class="nav-auth-wrap">
+                <div class="nav-auth-btn">
+                    Login
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+                <div class="dropdown" style="top: 100%; right: 0; left: auto; margin-top: 10px;">
+                    <a href="login.html" class="dropdown-link">Login</a>
+                    <a href="register.html" class="dropdown-link">Register</a>
+                </div>
+            </div>
+            <button class="action-btn" id="rtl-btn-nav" title="Toggle RTL">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+            </button>
+            <button class="action-btn" id="theme-btn-nav" title="Toggle Theme">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <div class="menu-trigger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+                Menu
+            </div>
+        </div>
+    </nav>
+
+    <header class="section-pad"
+        style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+            <img src="Assets/silk.png" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4;"
+                alt="Silk Background">
+        </div>
+
+        <div class="container reveal-up active">
+            <div
+                style="font-family: var(--font-body); letter-spacing: 0.3em; font-size: 0.8rem; margin-bottom: 2rem; color: var(--gold);">
+                EST. 2024</div>
+            <h1 class="h1-hero">The Art of <br><span class="gold-gradient-text"
+                    style="font-style: italic;">Sovereignty</span></h1>
+            <p class="p-lead" style="margin: 3rem auto;">
+                Aurum is a private strategy firm dedicated to the preservation and expansion of generational wealth and
+                corporate dominance.
+            </p>
+            <div style="margin-top: 4rem;">
+                <a href="services.html" class="btn-lux">Enter The Firm</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-pad">
+        <div class="grid-2">
+            <div class="reveal-up">
+                <h2 class="h2-title">Precision beyond<br>measure.</h2>
+                <p class="p-lead">
+                    In a world of noise, we provide silence. In a market of chaos, we provide structure. Our methodology
+                    is rooted in mathematical precision and historical context.
+                </p>
+                <!-- EXPANDED STATS -->
+                <div class="stat-grid"
+                    style="margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+                    <div class="stat-item">
+                        <div style="font-size: 2.5rem; font-family: var(--font-heading); color: var(--gold);">40+</div>
+                        <div
+                            style="font-size: 0.6rem; letter-spacing: 0.2em; margin-top: 0.5rem; text-transform: uppercase;">
+                            Markets</div>
+                    </div>
+                    <div class="stat-item">
+                        <div style="font-size: 2.5rem; font-family: var(--font-heading); color: var(--gold);">$12B</div>
+                        <div
+                            style="font-size: 0.6rem; letter-spacing: 0.2em; margin-top: 0.5rem; text-transform: uppercase;">
+                            Managed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div style="font-size: 2.5rem; font-family: var(--font-heading); color: var(--gold);">18%</div>
+                        <div
+                            style="font-size: 0.6rem; letter-spacing: 0.2em; margin-top: 0.5rem; text-transform: uppercase;">
+                            Avg Alpha</div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal-up" style="transition-delay: 0.2s;">
+                <img src="Assets/prism.png"
+                    style="width: 100%; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);" alt="Prism">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: OUR GLOBAL FOOTPRINT -->
+    <section class="section-pad" style="background: var(--bg-void); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="grid-2" style="align-items: center;">
+                <div class="reveal-up">
+                    <h2 class="h2-title">Global <span class="gold-gradient-text">Network</span></h2>
+                    <p class="p-lead">
+                        Our presence spans across major financial hubs, ensuring real-time intelligence and execution
+                        capabilities in every timezone.
+                    </p>
+                    <div style="margin-top: 3rem;">
+                        <div
+                            style="display: flex; gap: 2rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                            <div style="color: var(--gold); font-family: var(--font-heading); font-size: 1.2rem;">01
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">Americas</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">New York (HQ), San Francisco, São Paulo
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; gap: 2rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                            <div style="color: var(--gold); font-family: var(--font-heading); font-size: 1.2rem;">02
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">Europe & MEA</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">London, Zurich, Dubai, Riyadh</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 2rem;">
+                            <div style="color: var(--gold); font-family: var(--font-heading); font-size: 1.2rem;">03
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem;">Asia Pacific</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Singapore, Tokyo, Hong Kong, Sydney</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-up" style="transition-delay: 0.2s;">
+                    <div
+                        style="aspect-ratio: 16/9; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; position: relative; overflow: hidden;">
+                        <img src="Assets/global_nexus.png"
+                            style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;" alt="Global Map">
+                        <div
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, transparent, var(--bg-void));">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: THE SOVEREIGN FUND -->
+    <section class="section-pad" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 5rem;">
+                <h2 class="h2-title reveal-up">Investment Vehicles</h2>
+                <p class="p-lead reveal-up" style="margin: 0 auto;">Tailored exposure to high-growth, non-correlated
+                    assets.</p>
+            </div>
+
+            <div class="grid-3"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- FUND I -->
+                <div class="news-card reveal-up">
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem;">Alpha
+                            Prime</h3>
+                        <p style="color: #815858c3; margin-bottom: 2rem; font-size: 0.9rem;">
+                            High-frequency algorithmic trading strategies focused on forex and commodities markets. Zero
+                            human intervention.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                            <span>Min Entry</span>
+                            <span style="color: var(--gold);">$5M USD</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- FUND II -->
+                <div class="news-card reveal-up" style="transition-delay: 0.1s;">
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem;">Ventures
+                            VI</h3>
+                        <p style="color: #815858c3; margin-bottom: 2rem; font-size: 0.9rem;">
+                            Early-stage Series A allocation in Defense Tech, Bio-Engineering, and Artificial General
+                            Intelligence.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                            <span>Min Entry</span>
+                            <span style="color: var(--gold);">$10M USD</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- FUND III -->
+                <div class="news-card reveal-up" style="transition-delay: 0.2s;">
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem;">Real
+                            Assets</h3>
+                        <p style="color: #815858c3; margin-bottom: 2rem; font-size: 0.9rem;">
+                            Inflation-hedged portfolio of rare earth mineral rights, agricultural land, and luxury
+                            logistics hubs.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-family: monospace; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                            <span>Min Entry</span>
+                            <span style="color: var(--gold);">$25M USD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;" class="reveal-up">
+                <a href="services.html" class="btn-lux">Request Prospectus</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION (Retained) -->
+    <section class="section-pad">
+        <div class="container" style="text-align: center;">
+            <div class="reveal-up">
+                <h2 class="h2-title"
+                    style="font-size: 1.5rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 3rem;">
+                    The Philosophy</h2>
+                <p class="p-lead"
+                    style="max-width: 800px; margin: 0 auto; font-family: var(--font-heading); font-size: 2rem; line-height: 1.4;">
+                    "True power is not just about accumulation, but about architecture. Constructing systems that
+                    outlast their creators."
+                </p>
+                <div style="margin-top: 2rem; color: #815858c3; font-style: italic;">— The Aurum Codex</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: OUR VALUES -->
+    <section class="section-pad"
+        style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div class="grid-3">
+                <div class="reveal-up"
+                    style="padding: 3rem; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1.5rem;">⚔️</div>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Unyielding</h3>
+                    <p style="font-size: 0.9rem; color: #777;">We do not compromise on our standards or our word. Our
+                        execution is final and total.</p>
+                </div>
+                <div class="reveal-up"
+                    style="padding: 3rem; border: 1px solid rgba(255,255,255,0.05); text-align: center; transition-delay: 0.1s;">
+                    <div style="font-size: 3rem; margin-bottom: 1.5rem;">👁️</div>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Omniscient</h3>
+                    <p style="font-size: 0.9rem; color: #777;">Through data and intuition, we see the movements of the
+                        world before they manifest.</p>
+                </div>
+                <div class="reveal-up"
+                    style="padding: 3rem; border: 1px solid rgba(255,255,255,0.05); text-align: center; transition-delay: 0.2s;">
+                    <div style="font-size: 3rem; margin-bottom: 1.5rem;">🕰️</div>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Timeless</h3>
+                    <p style="font-size: 0.9rem; color: #777;">We build for generations, not quarters. Our impact is
+                        calculated in centuries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STRATEGIC INSIGHTS (Expanded) -->
+    <section class="section-pad" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="margin-bottom: 4rem;">Strategic Insights</h2>
+            <div class="grid-2">
+                <div class="news-card reveal-up">
+                    <div style="color: var(--gold); margin-bottom: 1rem; font-size: 0.8rem;">MARKET ANALYSIS</div>
+                    <h3 style="font-size: 1.8rem; font-family: var(--font-heading); margin-bottom: 1rem;">The Post-Fiat
+                        Era</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">How digital assets and
+                        decentralized
+                        finance are restructuring the global balance of power and wealth preservation.</p>
+                    <a href="#" class="btn-lux" style="font-size: 0.6rem; padding: 0.8rem 1.5rem;">Read Analysis</a>
+                </div>
+                <div class="news-card reveal-up">
+                    <div style="color: var(--gold); margin-bottom: 1rem; font-size: 0.8rem;">STRATEGY</div>
+                    <h3 style="font-size: 1.8rem; font-family: var(--font-heading); margin-bottom: 1rem;">Asymmetric
+                        Leverage</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">Utilizing geopolitical volatility
+                        to
+                        create asymmetric upside in traditional legacy portfolios.</p>
+                    <a href="#" class="btn-lux" style="font-size: 0.6rem; padding: 0.8rem 1.5rem;">Read Analysis</a>
+                </div>
+                <div class="news-card reveal-up">
+                    <div style="color: var(--gold); margin-bottom: 1rem; font-size: 0.8rem;">TECHNOLOGY</div>
+                    <h3 style="font-size: 1.8rem; font-family: var(--font-heading); margin-bottom: 1rem;">Quantum
+                        Resistance</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">Preparing family office
+                        infrastructure for the post-encryption reality of 2030.</p>
+                    <a href="#" class="btn-lux" style="font-size: 0.6rem; padding: 0.8rem 1.5rem;">Read Analysis</a>
+                </div>
+                <div class="news-card reveal-up">
+                    <div style="color: var(--gold); margin-bottom: 1rem; font-size: 0.8rem;">REAL ESTATE</div>
+                    <h3 style="font-size: 1.8rem; font-family: var(--font-heading); margin-bottom: 1rem;">Sanctuary
+                        Cities</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;">Identifying the safe havens of the
+                        next century based on climate modeling and political stability.</p>
+                    <a href="#" class="btn-lux" style="font-size: 0.6rem; padding: 0.8rem 1.5rem;">Read Analysis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: PRESS ROOM -->
+    <section class="section-pad" style="padding-bottom: 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+                <h2 class="h2-title reveal-up" style="margin-bottom: 0;">In The Press</h2>
+                <a href="#" class="reveal-up"
+                    style="color: var(--gold); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em;">VIEW
+                    ALL MEDIA &rarr;</a>
+            </div>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 3rem;">
+                <div class="reveal-up">
+                    <div
+                        style="font-family: var(--font-heading); color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.8rem;">
+                        FINANCIAL TIMES</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; line-height: 1.4;">"Breakdown of traditional
+                        banking systems rise to new breed of sovereign wealth."</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Aurum's Managing Partner
+                        discusses
+                        the shift away from fiat-backed assets in a special report.</p>
+                    <a href="#" class="btn-lux" style="font-size: 0.6rem; padding: 0.5rem 1rem;">Read Article</a>
+                </div>
+
+                <div class="reveal-up" style="transition-delay: 0.1s;">
+                    <div
+                        style="font-family: var(--font-heading); color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.8rem;">
+                        BLOOMBERG MARKETS</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; line-height: 1.4;">"Aurum's AI-driven 'Alpha
+                        Prime' fund outperforms S&P 500 by 42% in Q3."</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">An inside look at the
+                        proprietary
+                        algorithms driving the firm's flagship quantitative vehicle.</p>
+                    <a href="#" class="btn-lux" style="font-size: 0.6rem; padding: 0.5rem 1rem;">Read Article</a>
+                </div>
+
+                <div class="reveal-up" style="transition-delay: 0.2s;">
+                    <div
+                        style="font-family: var(--font-heading); color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.8rem;">
+                        FORBES</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; line-height: 1.4;">"Private capital is the new
+                        nation-state."</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">How family offices are
+                        leveraging
+                        geopolitical neutrality to secure generational wealth.</p>
+                    <a href="#" class="btn-lux" style="font-size: 0.6rem; padding: 0.5rem 1rem;">Read Article</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: NEWSLETTER / INSIGHTS -->
+    <section class="section-pad" style="background: var(--gold); color: black;">
+        <div class="container" style="text-align: center;">
+            <div class="reveal-up">
+                <h2 class="h2-title" style="color: black; border-color: black;">The Intelligence Brief</h2>
+                <p class="p-lead" style="color: rgba(0,0,0,0.7); margin: 2rem auto;">
+                    Receive weekly declassified insights into global macro trends and asymmetric opportunities.
+                </p>
+                <form
+                    style="max-width: 600px; margin: 3rem auto 0; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <input type="email" placeholder="YOUR PROTOCOL ID (EMAIL)"
+                        style="flex: 1; min-width: 300px; padding: 1.2rem; background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.2); outline: none; font-family: monospace; text-transform: uppercase; color: black;">
+                    <button class="btn-lux"
+                        style="background: black; color: var(--gold); border: none; padding: 1.2rem 3rem;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: PARTNERSHIPS -->
+    <section class="section-pad" style="padding-top: 4rem;">
+        <div class="container" style="text-align: center;">
+            <p class="reveal-up"
+                style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.2rem; color: #e0e0e0; margin-bottom: 3rem;">
+                Trusted By Sovereigns & Institutions</p>
+            <div class="reveal-up partners-grid"
+                style="display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; opacity: 0.5; filter: grayscale(1);">
+                <!-- Simple text logos for demo -->
+                <div style="font-family: var(--font-heading); font-size: 1.5rem;">APEX GROUP</div>
+                <div style="font-family: var(--font-heading); font-size: 1.5rem;">SOLARIS</div>
+                <div style="font-family: var(--font-heading); font-size: 1.5rem;">NEXUS</div>
+                <div style="font-family: var(--font-heading); font-size: 1.5rem;">VANGUARD</div>
+                <div style="font-family: var(--font-heading); font-size: 1.5rem;">OMEGA</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>AURUM</h2>
+                <p>
+                    Global Headquarters<br>
+                    400 Madison Ave, New York<br>
+                    NY 10017
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Firm</h4>
+                <a href="index.html" class="footer-link">Home One</a>
+                <a href="index2.html" class="footer-link">Home Two</a>
+                <a href="about.html" class="footer-link">Legacy</a>
+                <a href="services.html" class="footer-link">Expertise</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="contact.html" class="footer-link">Inquire</a>
+                <a href="login.html" class="footer-link">Client Portal</a>
+                <a href="#" class="footer-link">LinkedIn</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Engagement</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2024 Aurum Global. All rights reserved.</div>
+            <div>Designed with Precision.</div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

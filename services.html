@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURUM | Expertise</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .service-card {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            transition: background 0.3s;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.02);
+            padding-left: 2rem;
+        }
+
+        [data-theme="light"] .service-card {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .service-card:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* PROCESS STEPS */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .process-step {
+            position: relative;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--text-muted);
+            border-radius: 50%;
+        }
+
+        .process-step:hover {
+            border-color: var(--gold);
+        }
+
+        .process-step:hover::before {
+            background: var(--gold);
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        @media(max-width: 1024px) {
+            .service-card {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise"></div>
+    <nav class="nav">
+        <a href="index.html" class="logo">AURUM</a>
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="index.html" class="nav-link">Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg></a>
+                <div class="dropdown">
+                    <a href="index.html" class="dropdown-link">Home One</a>
+                    <a href="index2.html" class="dropdown-link">Home Two</a>
+                </div>
+            </div>
+            <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+            <div class="nav-item"><a href="services.html" class="nav-link active">Services</a></div>
+            <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-item">
+                <a href="#" class="nav-link">Dashboards <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg></a>
+                <div class="dropdown">
+                    <a href="dashboard-user.html" class="dropdown-link">User Dashboard</a>
+                    <a href="dashboard-admin.html" class="dropdown-link">Admin Dashboard</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <div class="nav-auth-wrap">
+                <div class="nav-auth-btn">
+                    Login
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10" height="10">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+                <div class="dropdown" style="top: 100%; right: 0; left: auto; margin-top: 10px;">
+                    <a href="login.html" class="dropdown-link">Login</a>
+                    <a href="register.html" class="dropdown-link">Register</a>
+                </div>
+            </div>
+            <button class="action-btn" id="rtl-btn-nav" title="Toggle RTL">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+            </button>
+            <button class="action-btn" id="theme-btn-nav" title="Toggle Theme">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <div class="menu-trigger">MENU</div>
+        </div>
+    </nav>
+
+    <div class="section-pad">
+        <div class="container">
+            <h1 class="h2-title reveal-up" style="margin-bottom: 5rem;">Core Competencies</h1>
+
+            <div class="reveal-up">
+                <div class="service-card">
+                    <div style="font-family: var(--font-heading); color: var(--gold);">01</div>
+                    <div>
+                        <h3 style="font-size: 2rem; margin-bottom: 1rem; font-family: var(--font-heading);">Corporate
+                            Sovereignty</h3>
+                        <p class="p-lead">Antifragility frameworks, decentralized governance structures, and
+                            generational succession planning.</p>
+                        <ul
+                            style="color: var(--text-muted); margin-top: 1.5rem; list-style: square; padding-left: 1.5rem; font-size: 0.9rem;">
+                            <li>Succession Planning for HNWIs</li>
+                            <li>Decentralized Autonomous Organizations (DAO)</li>
+                            <li>Legacy Asset Protection</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div style="font-family: var(--font-heading); color: var(--gold);">02</div>
+                    <div>
+                        <h3 style="font-size: 2rem; margin-bottom: 1rem; font-family: var(--font-heading);">Market
+                            Warfare</h3>
+                        <p class="p-lead">Aggressive market entry strategies, competitor displacement, and supply chain
+                            domination.</p>
+                        <ul
+                            style="color: var(--text-muted); margin-top: 1.5rem; list-style: square; padding-left: 1.5rem; font-size: 0.9rem;">
+                            <li>Counter-Intelligence Operations</li>
+                            <li>Supply Chain Weaponization</li>
+                            <li>Aggressive M&A Advisory</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div style="font-family: var(--font-heading); color: var(--gold);">03</div>
+                    <div>
+                        <h3 style="font-size: 2rem; margin-bottom: 1rem; font-family: var(--font-heading);">Algorithmic
+                            Capital</h3>
+                        <p class="p-lead">Automated asset allocation, high-frequency trading infrastructure, and
+                            quantitative risk modeling.</p>
+                        <ul
+                            style="color: var(--text-muted); margin-top: 1.5rem; list-style: square; padding-left: 1.5rem; font-size: 0.9rem;">
+                            <li>HFT Infrastructure Deployment</li>
+                            <li>Machine Learning Prediction Models</li>
+                            <li>Quantum-Ready Ledger Systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW SECTION: STRATEGIC ADVANTAGE -->
+    <section class="section-pad" style="background: var(--bg-void); border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="text-align: center; margin-bottom: 5rem;">The Strategic Advantage</h2>
+            <div class="grid-3">
+                <div class="reveal-up" style="text-align: center; padding: 2rem;">
+                    <div
+                        style="width: 80px; height: 80px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 1.5rem;">
+                        ⚡</div>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Velocity</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">We operate at the speed of thought. Our
+                        systems identify
+                        and execute on opportunities milliseconds before the competition.</p>
+                </div>
+                <div class="reveal-up" style="text-align: center; padding: 2rem; transition-delay: 0.1s;">
+                    <div
+                        style="width: 80px; height: 80px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 1.5rem;">
+                        🛡️</div>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Secrecy</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Complete anonymity is guaranteed. Our
+                        tiered engagement
+                        models ensure that your identity is protected at all costs.</p>
+                </div>
+                <div class="reveal-up" style="text-align: center; padding: 2rem; transition-delay: 0.2s;">
+                    <div
+                        style="width: 80px; height: 80px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 1.5rem;">
+                        📈</div>
+                    <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Alpha</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Consistent outperformance is our baseline.
+                        We provide
+                        non-correlated returns in any market environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW PROCESS VISUALIZATION -->
+    <section class="section-pad" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="margin-bottom: 4rem;">The Methodology</h2>
+            <div class="process-grid reveal-up">
+                <div class="process-step">
+                    <h4 style="color: var(--gold); margin-bottom: 0.5rem; font-family: var(--font-heading);">PHASE I
+                    </h4>
+                    <h5 style="margin-bottom: 1rem; font-size: 1.2rem;">Forensic Audit</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Complete structural dissection of the entity
+                        to identify
+                        fragility and inefficiency.</p>
+                </div>
+                <div class="process-step" style="transition-delay: 0.1s;">
+                    <h4 style="color: var(--gold); margin-bottom: 0.5rem; font-family: var(--font-heading);">PHASE II
+                    </h4>
+                    <h5 style="margin-bottom: 1rem; font-size: 1.2rem;">Strategic Re-Alignment</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Designing the new sovereign architecture
+                        based on
+                        asymmetric upside.</p>
+                </div>
+                <div class="process-step" style="transition-delay: 0.2s;">
+                    <h4 style="color: var(--gold); margin-bottom: 0.5rem; font-family: var(--font-heading);">PHASE III
+                    </h4>
+                    <h5 style="margin-bottom: 1rem; font-size: 1.2rem;">Capital Deployment</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Aggressive execution of the strategy
+                        utilizing
+                        proprietary liquidity pools.</p>
+                </div>
+                <div class="process-step" style="transition-delay: 0.3s;">
+                    <h4 style="color: var(--gold); margin-bottom: 0.5rem; font-family: var(--font-heading);">PHASE IV
+                    </h4>
+                    <h5 style="margin-bottom: 1rem; font-size: 1.2rem;">Sovereignty & Exit</h5>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Establishing the entity as a self-sustaining
+                        monopoly or
+                        preparing for high-value exit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DECLASSIFIED CASE STUDIES -->
+    <section class="section-pad">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="margin-bottom: 4rem;">Declassified Archives</h2>
+            <div class="grid-2">
+                <div class="reveal-up"
+                    style="padding: 3rem; background: var(--bg-void); border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="font-family: monospace; color: var(--gold); margin-bottom: 1rem;">// PROJECT HELIOS
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 2rem;">Rare Earth
+                        Monopoly</h3>
+                    <p style="color: #888; margin-bottom: 2rem;">
+                        <strong>Objective:</strong> Secure exclusive lithium rights for a G7 nation-state in South
+                        America.
+                        <br><br>
+                        <strong>Execution:</strong> Deployed $1.2B in structured debt to distressed local mining
+                        conglomerates, converted to equity during the 2023 commodity dip.
+                        <br><br>
+                        <strong>Outcome:</strong> 40% global market share control.
+                    </p>
+                    <div
+                        style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; font-size: 0.8rem; font-family: monospace; color: #666;">
+                        STATUS: COMPLETED
+                    </div>
+                </div>
+                <div class="reveal-up"
+                    style="padding: 3rem; background: var(--bg-void); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.1s;">
+                    <div style="font-family: monospace; color: var(--gold); margin-bottom: 1rem;">// PROJECT AEGIS</div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 2rem;">Sovereign Debt
+                        Defense</h3>
+                    <p style="color: #888; margin-bottom: 2rem;">
+                        <strong>Objective:</strong> Protect a small island nation from predatory vulture funds.
+                        <br><br>
+                        <strong>Execution:</strong> Utilized proprietary algo-trading to counter short attacks on
+                        national bonds while establishing a silent liquidity pool.
+                        <br><br>
+                        <strong>Outcome:</strong> Currency stabilized; credit rating upgraded.
+                    </p>
+                    <div
+                        style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; font-size: 0.8rem; font-family: monospace; color: #666;">
+                        STATUS: ONGOING
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTOR FOCUS -->
+    <section class="section-pad" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="margin-bottom: 4rem; text-align: center;">Sector Focus</h2>
+            <div class="grid-3">
+                <div class="reveal-up"
+                    style="position: relative; height: 300px; border: 1px solid rgba(255,255,255,0.1); padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden;">
+                    <img src="Assets/sector-defense.png"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; z-index: 1; transition: transform 0.5s;"
+                        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+                        alt="Defense">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, black, transparent); z-index: 2;">
+                    </div>
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.5rem; position: relative; z-index: 3; color: white;">
+                        Defense Technology</h3>
+                    <p
+                        style="color: rgba(255, 255, 255, 0.8); position: relative; z-index: 3; margin-top: 0.5rem; font-size: 0.9rem;">
+                        Next-gen kinetic ballistics and drone swarm defense.</p>
+                </div>
+                <div class="reveal-up"
+                    style="position: relative; height: 300px; border: 1px solid rgba(255,255,255,0.1); padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; transition-delay: 0.1s;">
+                    <img src="Assets/sector-rare.png"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; z-index: 1; transition: transform 0.5s;"
+                        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+                        alt="Rare Earths">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, black, transparent); z-index: 2;">
+                    </div>
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.5rem; position: relative; z-index: 3; color: white;">
+                        Rare Earths</h3>
+                    <p
+                        style="color: rgba(255, 255, 255, 0.8); position: relative; z-index: 3; margin-top: 0.5rem; font-size: 0.9rem;">
+                        Control of lithium, cobalt, and scandium supply chains.</p>
+                </div>
+                <div class="reveal-up"
+                    style="position: relative; height: 300px; border: 1px solid rgba(255,255,255,0.1); padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; transition-delay: 0.2s;">
+                    <img src="Assets/sector-bio.png"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; z-index: 1; transition: transform 0.5s;"
+                        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+                        alt="Bio">
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, black, transparent); z-index: 2;">
+                    </div>
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.5rem; position: relative; z-index: 3; color: white;">
+                        Bio-Longevity</h3>
+                    <p
+                        style="color: rgba(255, 255, 255, 0.8); position: relative; z-index: 3; margin-top: 0.5rem; font-size: 0.9rem;">
+                        Therapeutics extending human lifespan beyond 120 years.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center;" class="reveal-up">
+                <a href="contact.html" class="btn-lux">Request Sector Report</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE INTELLIGENCE NETWORK -->
+    <section class="section-pad">
+        <div class="container">
+            <h2 class="h2-title reveal-up" style="margin-bottom: 4rem;">The Intelligence Network</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                <div class="reveal-up"
+                    style="padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.8rem; font-family: monospace; color: var(--text-muted);">
+                    SATELLITE IMAGERY</div>
+                <div class="reveal-up"
+                    style="padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.8rem; font-family: monospace; color: var(--text-muted);">
+                    SHIPPING LOGISTICS</div>
+                <div class="reveal-up"
+                    style="padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.8rem; font-family: monospace; color: var(--text-muted);">
+                    CENTRAL BANK MINUTES</div>
+                <div class="reveal-up"
+                    style="padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.8rem; font-family: monospace; color: var(--text-muted);">
+                    PATENT FILINGS</div>
+                <div class="reveal-up"
+                    style="padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.8rem; font-family: monospace; color: var(--text-muted);">
+                    DARK WEB ANALYTICS</div>
+                <div class="reveal-up"
+                    style="padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.8rem; font-family: monospace; color: var(--text-muted);">
+                    GEOPOLITICAL SENTIMENT</div>
+                <div class="reveal-up"
+                    style="padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.8rem; font-family: monospace; color: var(--text-muted);">
+                    ENERGY CONSUMPTION</div>
+            </div>
+            <p class="reveal-up"
+                style="text-align: center; margin-top: 3rem; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
+                We synthesize 40,000 data points per second to construct a real-time model of the global economy,
+                visible only to our partners.
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>AURUM</h2>
+                <p>
+                    Global Headquarters<br>
+                    400 Madison Ave, New York<br>
+                    NY 10017
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Firm</h4>
+                <a href="index.html" class="footer-link">Home One</a>
+                <a href="index2.html" class="footer-link">Home Two</a>
+                <a href="about.html" class="footer-link">Legacy</a>
+                <a href="services.html" class="footer-link">Expertise</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="contact.html" class="footer-link">Inquire</a>
+                <a href="login.html" class="footer-link">Client Portal</a>
+                <a href="#" class="footer-link">LinkedIn</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Engagement</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2024 Aurum Global. All rights reserved.</div>
+            <div>Designed with Precision.</div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
