@@ -31,6 +31,151 @@
         [data-theme="light"] .bar-chart {
             border-color: rgba(0, 0, 0, 0.1);
         }
+
+        .settings-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.8rem;
+            color: white;
+            font-family: inherit;
+        }
+
+        .settings-label {
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0;
+        }
+
+        [data-theme="light"] .settings-input {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #111;
+        }
+
+        [data-theme="light"] .settings-label {
+            color: #333;
+        }
+
+        /* Chart Responsive Styles */
+        @media (max-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .bar-chart {
+                height: 150px;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid-3, .grid-2 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .bar-chart {
+                height: 120px;
+                gap: 0.3rem;
+            }
+
+            .holo-card {
+                padding: 1.5rem !important;
+            }
+
+            .holo-card h4 {
+                font-size: 0.9rem !important;
+            }
+        }
+
+        /* Light Theme Chart Styles */
+        [data-theme="light"] svg path {
+            stroke: #333;
+        }
+
+        [data-theme="light"] svg circle {
+            stroke: #333;
+        }
+
+        [data-theme="light"] .holo-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .terminal-box {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .terminal-line {
+            color: #333;
+        }
+
+        /* RTL Chart Support */
+        [dir="rtl"] .bar-chart {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] svg {
+            transform: scaleX(-1);
+        }
+
+        [dir="rtl"] .grid-3,
+        [dir="rtl"] .grid-2 {
+            direction: ltr;
+        }
+
+        [dir="rtl"] .holo-card h4,
+        [dir="rtl"] .holo-card p,
+        [dir="rtl"] .holo-card span {
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Chart Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Ensure charts adapt to container */
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .chart-donut {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .chart-content {
+            position: absolute;
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            color: var(--gold);
+        }
+
+        @media (max-width: 640px) {
+            .chart-donut {
+                width: 100px;
+                height: 100px;
+            }
+
+            .chart-content {
+                font-size: 1.5rem;
+            }
+        }
+
+        [data-theme="light"] .chart-content {
+            color: #b8860b;
+        }
     </style>
 </head>
 
@@ -257,9 +402,8 @@
                     </div>
                 </div>
 
-                <!-- REVENUE CHART -->
                 <div class="holo-card"
-                    style="padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; margin-top: 3rem;">
+                    style="padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; margin-top: 3rem; margin-bottom: 3rem;">
                     <h3 style="margin-bottom: 2rem; font-family: var(--font-heading);">Revenue Trajectory</h3>
                     <div class="bar-chart">
                         <div class="bar" style="height: 40%; background: #333;"></div>
@@ -274,11 +418,441 @@
                         <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
                     </div>
                 </div>
+
+                <!-- ADMIN ANALYTICS GRID -->
+                <div class="grid-2" style="gap: 2rem;">
+                    <!-- Admin Chart 1: System Health -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">System
+                            Health</h4>
+                        <div
+                            style="height: 150px; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg viewBox="0 0 36 36" style="width: 120px; height: 120px;">
+                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2" />
+                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    fill="none" stroke="#44ff44" stroke-width="2" stroke-dasharray="95, 100" />
+                            </svg>
+                            <div
+                                style="position: absolute; color: #44ff44; font-family: var(--font-heading); font-size: 1.2rem;">
+                                95%</div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 1rem;">
+                            All nodes operating within normal parameters.</p>
+                    </div>
+
+                    <!-- Admin Chart 2: Client Growth -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Client
+                            Acquisition</h4>
+                        <div style="height: 150px; display: flex; align-items: flex-end; gap: 5px;">
+                            <div style="flex: 1; height: 30%; background: rgba(255,255,255,0.1);"></div>
+                            <div style="flex: 1; height: 45%; background: rgba(255,255,255,0.1);"></div>
+                            <div style="flex: 1; height: 40%; background: rgba(255,255,255,0.1);"></div>
+                            <div style="flex: 1; height: 65%; background: var(--gold);"></div>
+                            <div style="flex: 1; height: 80%; background: var(--gold);"></div>
+                            <div style="flex: 1; height: 100%; background: var(--gold);"></div>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.6rem; margin-top: 0.5rem; color: var(--text-muted);">
+                            <span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span>
+                        </div>
+                    </div>
+
+                    <!-- Admin Chart 3: Security Events -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Security
+                            Incidence</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.7rem;">
+                                <span>BRUTE FORCE</span><span style="color: #ff4444;">12</span>
+                            </div>
+                            <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.05);">
+                                <div style="width: 30%; height: 100%; background: #ff4444;"></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.7rem;">
+                                <span>SQL INJECTION</span><span style="color: #44ff44;">0</span>
+                            </div>
+                            <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.05);">
+                                <div style="width: 0%; height: 100%; background: #44ff44;"></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.7rem;">
+                                <span>UNAUTHORIZED ACCESS</span><span style="color: orange;">2</span>
+                            </div>
+                            <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.05);">
+                                <div style="width: 10%; height: 100%; background: orange;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Chart 4: Database Load -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">DB Latency
+                            (ms)</h4>
+                        <svg viewBox="0 0 100 40" style="width: 100%; height: 150px;">
+                            <path d="M0,35 Q10,30 20,32 T40,25 T60,28 T80,15 T100,20" fill="none" stroke="var(--gold)"
+                                stroke-width="1.5" />
+                            <path d="M0,35 Q10,30 20,32 T40,25 T60,28 T80,15 T100,20 V40 H0 Z"
+                                fill="rgba(212, 175, 55, 0.1)" />
+                        </svg>
+                    </div>
+
+                    <!-- Admin Chart 5: API Usage -->
+                    <div class="holo-card" style="padding: 2rem; grid-column: auto;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">API Call
+                            Distribution</h4>
+                        <div style="display: flex; height: 100px; gap: 4px;">
+                            <div style="flex: 1; height: 100%; background: var(--gold);"></div>
+                            <div style="flex: 2; height: 100%; background: rgba(255,255,255,0.05);"></div>
+                            <div style="flex: 1.5; height: 100%; background: var(--gold); opacity: 0.5;"></div>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.6rem; margin-top: 0.5rem; color: var(--text-muted);">
+                            <span>READ</span><span>WRITE</span><span>AUTH</span>
+                        </div>
+                    </div>
+
+                    <!-- Admin Chart 6: Network Bandwidth -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Network Bandwidth (GB/s)</h4>
+                        <svg viewBox="0 0 100 40" style="width: 100%; height: 150px;">
+                            <path d="M0,30 L10,28 L20,25 L30,30 L40,22 L50,18 L60,20 L70,15 L80,12 L90,10 L100,8" 
+                                fill="none" stroke="#44ff44" stroke-width="2" />
+                            <path d="M0,30 L10,28 L20,25 L30,30 L40,22 L50,18 L60,20 L70,15 L80,12 L90,10 L100,8 V40 H0 Z"
+                                fill="rgba(68, 255, 68, 0.1)" />
+                        </svg>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.6rem; margin-top: 0.5rem; color: var(--text-muted);">
+                            <span>Peak: 14.2 GB/s</span><span>Avg: 8.5 GB/s</span>
+                        </div>
+                    </div>
+
+                    <!-- Admin Chart 7: User Activity Heatmap -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">User Activity by Hour</h4>
+                        <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; height: 100px;">
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 2px;" title="00:00"></div>
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 2px;" title="02:00"></div>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;" title="04:00"></div>
+                            <div style="background: rgba(255,255,255,0.15); border-radius: 2px;" title="06:00"></div>
+                            <div style="background: rgba(212, 175, 55, 0.3); border-radius: 2px;" title="08:00"></div>
+                            <div style="background: rgba(212, 175, 55, 0.5); border-radius: 2px;" title="10:00"></div>
+                            <div style="background: var(--gold); border-radius: 2px;" title="12:00"></div>
+                            <div style="background: rgba(212, 175, 55, 0.7); border-radius: 2px;" title="14:00"></div>
+                            <div style="background: rgba(212, 175, 55, 0.6); border-radius: 2px;" title="16:00"></div>
+                            <div style="background: rgba(212, 175, 55, 0.4); border-radius: 2px;" title="18:00"></div>
+                            <div style="background: rgba(255,255,255,0.2); border-radius: 2px;" title="20:00"></div>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;" title="22:00"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 1rem;">Peak activity: 12:00 - 14:00 UTC</p>
+                    </div>
+
+                    <!-- Admin Chart 8: Storage Distribution -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Storage Allocation</h4>
+                        <div style="height: 150px; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg viewBox="0 0 36 36" style="width: 120px; height: 120px;">
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--gold)" stroke-width="3" 
+                                    stroke-dasharray="60, 40" stroke-dashoffset="25" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#44ff44" stroke-width="3" 
+                                    stroke-dasharray="25, 75" stroke-dashoffset="-35" />
+                            </svg>
+                            <div style="position: absolute; text-align: center;">
+                                <div style="font-family: var(--font-heading); font-size: 1.2rem;">24.8 TB</div>
+                                <div style="font-size: 0.6rem; color: var(--text-muted);">Used</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.5rem; justify-content: center; font-size: 0.7rem; margin-top: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.3rem;">
+                                <div style="width: 8px; height: 8px; background: var(--gold); border-radius: 50%;"></div>
+                                <span>Database</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.3rem;">
+                                <div style="width: 8px; height: 8px; background: #44ff44; border-radius: 50%;"></div>
+                                <span>Files</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Chart 9: Request Response Time -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Avg Response Time (ms)</h4>
+                        <div style="height: 120px; display: flex; align-items: flex-end; gap: 8px; padding: 0 10px;">
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 65px; background: var(--gold); border-radius: 4px 4px 0 0;"></div>
+                                <span style="font-size: 0.6rem; margin-top: 5px; color: var(--text-muted);">API</span>
+                            </div>
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 45px; background: var(--gold); opacity: 0.7; border-radius: 4px 4px 0 0;"></div>
+                                <span style="font-size: 0.6rem; margin-top: 5px; color: var(--text-muted);">WEB</span>
+                            </div>
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 85px; background: rgba(255,255,255,0.1); border-radius: 4px 4px 0 0;"></div>
+                                <span style="font-size: 0.6rem; margin-top: 5px; color: var(--text-muted);">DB</span>
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: #44ff44; margin-top: 1rem;">All systems optimal</p>
+                    </div>
+
+                    <!-- Admin Chart 10: Concurrent Users -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Concurrent Sessions</h4>
+                        <div style="height: 150px; position: relative;">
+                            <svg viewBox="0 0 200 100" style="width: 100%; height: 100%;">
+                                <defs>
+                                    <linearGradient id="userGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:var(--gold);stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,80 Q25,70 50,65 T100,50 T150,45 T200,35" 
+                                    fill="none" stroke="var(--gold)" stroke-width="2" />
+                                <path d="M0,80 Q25,70 50,65 T100,50 T150,45 T200,35 V100 H0 Z" fill="url(#userGrad)" />
+                                <circle cx="200" cy="35" r="3" fill="var(--gold)">
+                                    <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" />
+                                </circle>
+                            </svg>
+                        </div>
+                        <div style="text-align: center; font-size: 0.9rem; font-family: var(--font-heading); color: var(--gold);">1,247 Active</div>
+                    </div>
+
+                    <!-- Admin Chart 11: Transaction Volume -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Daily Transactions</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Deposits</span><span style="color: #44ff44;">+$8.2M</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 82%; height: 100%; background: linear-gradient(90deg, #44ff44, rgba(68, 255, 68, 0.5));"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Withdrawals</span><span style="color: var(--gold);">-$5.1M</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 51%; height: 100%; background: linear-gradient(90deg, var(--gold), rgba(212, 175, 55, 0.5));"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Transfers</span><span>$3.4M</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 34%; height: 100%; background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Chart 12: Server Uptime -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Server Uptime (30 Days)</h4>
+                        <div style="display: grid; grid-template-columns: repeat(30, 1fr); gap: 2px; height: 80px;">
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 1: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 2: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 3: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 4: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 5: 100%"></div>
+                            <div style="background: rgba(68, 255, 68, 0.7); border-radius: 2px 2px 0 0;" title="Day 6: 98%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 7: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 8: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 9: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 10: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 11: 100%"></div>
+                            <div style="background: orange; border-radius: 2px 2px 0 0;" title="Day 12: 95%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 13: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 14: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 15: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 16: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 17: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 18: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 19: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 20: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 21: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 22: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 23: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 24: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 25: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 26: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 27: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 28: 100%"></div>
+                            <div style="background: #44ff44; border-radius: 2px 2px 0 0;" title="Day 29: 100%"></div>
+                            <div style="background: var(--gold); border-radius: 2px 2px 0 0;" title="Day 30: 100%">
+                                <div style="width: 100%; height: 5px; background: var(--gold); animation: pulse 2s infinite;"></div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: #44ff44; margin-top: 1rem;">99.8% Average Uptime</p>
+                    </div>
+                </div>
             </div>
 
             <!-- SECTION: CLIENT ROSTER -->
             <div id="sec-roster" class="dash-section" style="display: none;">
                 <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">VIP Client Roster</h3>
+                
+                <!-- Client Analytics Charts -->
+                <div class="grid-3" style="margin-bottom: 3rem;">
+                    <!-- Chart 1: Client Distribution by Region -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Regional Distribution</h4>
+                        <div style="height: 150px; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg viewBox="0 0 36 36" style="width: 120px; height: 120px;">
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--gold)" stroke-width="3" 
+                                    stroke-dasharray="35, 100" transform="rotate(-90 18 18)" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#44ff44" stroke-width="3" 
+                                    stroke-dasharray="30, 100" transform="rotate(35 18 18)" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="orange" stroke-width="3" 
+                                    stroke-dasharray="35, 100" transform="rotate(140 18 18)" />
+                            </svg>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: center; font-size: 0.65rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.3rem;">
+                                <div style="width: 8px; height: 8px; background: var(--gold); border-radius: 50%;"></div>
+                                <span>Americas 35%</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.3rem;">
+                                <div style="width: 8px; height: 8px; background: #44ff44; border-radius: 50%;"></div>
+                                <span>Europe 30%</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.3rem;">
+                                <div style="width: 8px; height: 8px; background: orange; border-radius: 50%;"></div>
+                                <span>Asia 35%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2: Client Growth Trend -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">New Clients (YTD)</h4>
+                        <svg viewBox="0 0 100 40" style="width: 100%; height: 120px;">
+                            <path d="M0,35 L20,32 L40,28 L60,22 L80,15 L100,10" 
+                                fill="none" stroke="var(--gold)" stroke-width="2" />
+                            <path d="M0,35 L20,32 L40,28 L60,22 L80,15 L100,10 V40 H0 Z"
+                                fill="rgba(212, 175, 55, 0.1)" />
+                        </svg>
+                        <div style="text-align: center; font-size: 0.9rem; color: #44ff44; margin-top: 1rem;">+142 This Year</div>
+                    </div>
+
+                    <!-- Chart 3: Risk Profile Breakdown -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Risk Profiles</h4>
+                        <div style="height: 120px; display: flex; align-items: flex-end; gap: 10px; padding: 0 15px;">
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 80px; background: #44ff44; border-radius: 4px 4px 0 0;"></div>
+                                <span style="font-size: 0.6rem; margin-top: 5px;">CONS</span>
+                            </div>
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 55px; background: var(--gold); border-radius: 4px 4px 0 0;"></div>
+                                <span style="font-size: 0.6rem; margin-top: 5px;">BAL</span>
+                            </div>
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 35px; background: orange; border-radius: 4px 4px 0 0;"></div>
+                                <span style="font-size: 0.6rem; margin-top: 5px;">AGG</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 4: AUM by Client Tier -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">AUM by Tier</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Ultra HNW</span><span style="color: var(--gold);">$850M</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                                    <div style="width: 71%; height: 100%; background: var(--gold); border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>HNW</span><span>$285M</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                                    <div style="width: 24%; height: 100%; background: rgba(212, 175, 55, 0.6); border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Affluent</span><span>$65M</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                                    <div style="width: 5%; height: 100%; background: rgba(255,255,255,0.2); border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 5: Client Satisfaction Score -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Satisfaction Score</h4>
+                        <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; border: 8px solid rgba(255,255,255,0.05); 
+                                border-top-color: #44ff44; border-right-color: #44ff44; display: flex; align-items: center; 
+                                justify-content: center; font-family: var(--font-heading); font-size: 1.5rem; color: #44ff44;">
+                                9.2
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 1rem;">Out of 10 (Q4 2025)</p>
+                    </div>
+
+                    <!-- Chart 6: Retention Rate -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Client Retention</h4>
+                        <div style="height: 80px; display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px;">
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 1.2rem; color: var(--gold); margin-top: 1rem; font-family: var(--font-heading);">96%</p>
+                    </div>
+
+                    <!-- Chart 7: Average Portfolio Size -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Avg Portfolio Size</h4>
+                        <div style="height: 100px; position: relative;">
+                            <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
+                                <defs>
+                                    <linearGradient id="portfolioGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:var(--gold);stop-opacity:0.4" />
+                                        <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,45 L25,40 L50,30 L75,28 L100,20" fill="none" stroke="var(--gold)" stroke-width="2" />
+                                <path d="M0,45 L25,40 L50,30 L75,28 L100,20 V50 H0 Z" fill="url(#portfolioGrad)" />
+                            </svg>
+                        </div>
+                        <div style="text-align: center; font-size: 1.3rem; color: var(--gold); font-family: var(--font-heading);">$1.43M</div>
+                    </div>
+
+                    <!-- Chart 8: Client Activity Status -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Activity Status</h4>
+                        <div style="display: flex; height: 100px; gap: 8px;">
+                            <div style="width: 70%; background: var(--gold); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-family: var(--font-heading);">
+                                756
+                            </div>
+                            <div style="width: 30%; background: rgba(255,255,255,0.05); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #888;">
+                                84
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-top: 1rem; color: var(--text-muted);">
+                            <span>Active</span><span>Dormant</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="glass-card" style="padding: 0;">
                     <table class="table" style="margin: 0;">
                         <thead>
@@ -315,7 +889,142 @@
 
             <!-- SECTION: SYSTEM STATUS -->
             <div id="sec-status" class="dash-section" style="display: none;">
-                <div class="grid-2" style="margin-top: 0; align-items: stretch;">
+                <!-- System Performance Charts -->
+                <div class="grid-3" style="margin-bottom: 3rem;">
+                    <!-- Chart 1: CPU Usage Over Time -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">CPU Usage Trend</h4>
+                        <svg viewBox="0 0 100 40" style="width: 100%; height: 120px;">
+                            <path d="M0,30 L10,28 L20,25 L30,27 L40,20 L50,22 L60,18 L70,23 L80,19 L90,16 L100,14" 
+                                fill="none" stroke="#44ff44" stroke-width="2" />
+                            <path d="M0,30 L10,28 L20,25 L30,27 L40,20 L50,22 L60,18 L70,23 L80,19 L90,16 L100,14 V40 H0 Z"
+                                fill="rgba(68, 255, 68, 0.1)" />
+                        </svg>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">Current: 42%</p>
+                    </div>
+
+                    <!-- Chart 2: Memory Distribution -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Memory Allocation</h4>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg viewBox="0 0 36 36" style="width: 100px; height: 100px;">
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--gold)" stroke-width="3" 
+                                    stroke-dasharray="81, 100" transform="rotate(-90 18 18)" />
+                            </svg>
+                            <div style="position: absolute; font-family: var(--font-heading); font-size: 1.2rem; color: var(--gold);">
+                                81%
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">19.2 GB / 24 GB</p>
+                    </div>
+
+                    <!-- Chart 3: Network Traffic -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Network I/O</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>↓ Inbound</span><span style="color: #44ff44;">8.5 GB/s</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+                                    <div style="width: 60%; height: 100%; background: #44ff44; border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>↑ Outbound</span><span style="color: var(--gold);">5.2 GB/s</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+                                    <div style="width: 37%; height: 100%; background: var(--gold); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 4: Active Connections -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Active Connections</h4>
+                        <div style="height: 100px; display: flex; align-items: flex-end; gap: 5px;">
+                            <div style="width: 100%; height: 40%; background: rgba(255,255,255,0.1); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 55%; background: rgba(255,255,255,0.1); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 45%; background: rgba(255,255,255,0.1); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 70%; background: rgba(255,255,255,0.1); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 60%; background: var(--gold); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 80%; background: var(--gold); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 90%; background: var(--gold); border-radius: 2px 2px 0 0;"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.9rem; color: var(--gold); margin-top: 1rem; font-family: var(--font-heading);">12,847</p>
+                    </div>
+
+                    <!-- Chart 5: Disk I/O Performance -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Disk I/O (MB/s)</h4>
+                        <div style="height: 100px; position: relative;">
+                            <svg viewBox="0 0 200 100" style="width: 100%; height: 100%;">
+                                <defs>
+                                    <linearGradient id="diskGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#44ff44;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#44ff44;stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,70 Q25,65 50,60 T100,45 T150,40 T200,35" 
+                                    fill="none" stroke="#44ff44" stroke-width="2" />
+                                <path d="M0,70 Q25,65 50,60 T100,45 T150,40 T200,35 V100 H0 Z" fill="url(#diskGrad)" />
+                            </svg>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">Read: 450 MB/s | Write: 380 MB/s</p>
+                    </div>
+
+                    <!-- Chart 6: Thread Pool Usage -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Thread Pool</h4>
+                        <div style="display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; height: 80px;">
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;"></div>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;"></div>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.8rem; margin-top: 1rem;">700 / 1000 Threads</p>
+                    </div>
+
+                    <!-- Chart 7: Cache Hit Rate -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Cache Hit Rate</h4>
+                        <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; border: 6px solid rgba(255,255,255,0.05); 
+                                border-top-color: #44ff44; border-right-color: #44ff44; border-bottom-color: #44ff44;
+                                display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); 
+                                font-size: 1.3rem; color: #44ff44;">
+                                94%
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: #44ff44; margin-top: 1rem;">Excellent Performance</p>
+                    </div>
+
+                    <!-- Chart 8: Error Rate -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Error Rate (Last Hour)</h4>
+                        <div style="height: 100px; display: flex; align-items: flex-end; gap: 4px;">
+                            <div style="width: 100%; height: 5%; background: rgba(255,68,68,0.3); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 3%; background: rgba(255,68,68,0.3); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 7%; background: rgba(255,68,68,0.3); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 4%; background: rgba(255,68,68,0.3); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 2%; background: rgba(68,255,68,0.5); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 1%; background: rgba(68,255,68,0.5); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 2%; background: rgba(68,255,68,0.5); border-radius: 2px 2px 0 0;"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.8rem; color: #44ff44; margin-top: 1rem;">0.02% - Within Threshold</p>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="align-items: stretch;">
                     <!-- SECURITY FEED -->
                     <div class="holo-card" style="padding: 0; min-height: 250px;">
                         <div class="terminal-box">
@@ -746,18 +1455,12 @@
                 <div class="glass-card" style="max-width: 600px; padding: 2rem;">
                     <form>
                         <div style="margin-bottom: 1.5rem;">
-                            <label
-                                style="display: block; font-size: 0.8rem; margin-bottom: 0.5rem; color: #e0e0e0;">System
-                                Name</label>
-                            <input type="text" value="AURUM_CORE_V2.1"
-                                style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem; color: white;">
+                            <label class="settings-label">System Name</label>
+                            <input type="text" value="AURUM_CORE_V2.1" class="settings-input">
                         </div>
                         <div style="margin-bottom: 1.5rem;">
-                            <label
-                                style="display: block; font-size: 0.8rem; margin-bottom: 0.5rem; color: #e0e0e0;">Admin
-                                Email</label>
-                            <input type="email" value="admin@aurum.global"
-                                style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem; color: white;">
+                            <label class="settings-label">Admin Email</label>
+                            <input type="email" value="admin@aurum.global" class="settings-input">
                         </div>
                         <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
                             <input type="checkbox" checked id="maint">

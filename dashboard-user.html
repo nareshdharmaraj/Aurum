@@ -6,6 +6,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurum | Client Portal</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 200px;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            transition: height 1s var(--ease-lux);
+            opacity: 0.7;
+        }
+
+        .bar:hover {
+            opacity: 1;
+        }
+
+        [data-theme="light"] .bar-chart {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chart Responsive Styles */
+        @media (max-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .bar-chart {
+                height: 150px;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid-3, .grid-2 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .bar-chart {
+                height: 120px;
+                gap: 0.3rem;
+            }
+
+            .holo-card {
+                padding: 1.5rem !important;
+            }
+
+            .holo-card h4 {
+                font-size: 0.9rem !important;
+            }
+
+            .glass-card {
+                padding: 1.5rem !important;
+            }
+        }
+
+        /* Light Theme Chart Styles */
+        [data-theme="light"] svg path {
+            stroke: #333;
+        }
+
+        [data-theme="light"] svg circle {
+            stroke: #333;
+        }
+
+        [data-theme="light"] .holo-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .table {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .table th {
+            background: rgba(0, 0, 0, 0.05);
+            color: #333;
+        }
+
+        [data-theme="light"] .table td {
+            color: #333;
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* RTL Chart Support */
+        [dir="rtl"] .bar-chart {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] svg {
+            transform: scaleX(-1);
+        }
+
+        [dir="rtl"] .grid-3,
+        [dir="rtl"] .grid-2 {
+            direction: ltr;
+        }
+
+        [dir="rtl"] .holo-card h4,
+        [dir="rtl"] .holo-card p,
+        [dir="rtl"] .holo-card span,
+        [dir="rtl"] .glass-card h4,
+        [dir="rtl"] .glass-card p {
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Chart Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Ensure charts adapt to container */
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .chart-donut {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .chart-content {
+            position: absolute;
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            color: var(--gold);
+        }
+
+        @media (max-width: 640px) {
+            .chart-donut {
+                width: 100px;
+                height: 100px;
+            }
+
+            .chart-content {
+                font-size: 1.5rem;
+            }
+        }
+
+        [data-theme="light"] .chart-content {
+            color: #b8860b;
+        }
+
+        /* Timeline Scroll */
+        .timeline-scroll {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .timeline-scroll {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -207,6 +381,25 @@
                     </div>
                 </div>
 
+                <!-- PERFORMANCE CHART -->
+                <div class="holo-card"
+                    style="padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 3rem;">
+                    <h3 style="margin-bottom: 2rem; font-family: var(--font-heading);">Portfolio Performance</h3>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 35%; background: #333;"></div>
+                        <div class="bar" style="height: 45%; background: #444;"></div>
+                        <div class="bar" style="height: 40%; background: #555;"></div>
+                        <div class="bar" style="height: 60%; background: var(--gold);"></div>
+                        <div class="bar" style="height: 55%; background: #b38728;"></div>
+                        <div class="bar" style="height: 75%; background: #fcf6ba;"></div>
+                        <div class="bar" style="height: 85%; background: var(--gold);"></div>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; margin-top: 1rem; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">
+                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                    </div>
+                </div>
+
                 <!-- PRIVATE EVENTS -->
                 <div style="margin-top: 3rem;">
                     <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Upcoming Private Summits</h3>
@@ -244,6 +437,162 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Additional Overview Charts -->
+                <div class="grid-3" style="margin-top: 3rem;">
+                    <!-- Chart 1: Monthly Returns -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Monthly Returns</h4>
+                        <div style="height: 120px; display: flex; align-items: flex-end; gap: 5px;">
+                            <div style="width: 100%; height: 45%; background: rgba(255,255,255,0.1); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 60%; background: rgba(255,255,255,0.1); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 55%; background: rgba(255,255,255,0.1); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 75%; background: var(--gold); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 85%; background: var(--gold); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 95%; background: var(--gold); border-radius: 2px 2px 0 0;"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: #44ff44; margin-top: 1rem;">+4.2% This Month</p>
+                    </div>
+
+                    <!-- Chart 2: Asset Allocation -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Asset Mix</h4>
+                        <div style="height: 120px; display: flex; gap: 5px;">
+                            <div style="width: 40%; background: var(--gold); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">
+                                40%
+                            </div>
+                            <div style="width: 35%; background: rgba(212, 175, 55, 0.5); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
+                                35%
+                            </div>
+                            <div style="width: 25%; background: rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">
+                                25%
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.65rem; margin-top: 1rem; color: var(--text-muted);">
+                            <span>Stocks</span><span>Bonds</span><span>Cash</span>
+                        </div>
+                    </div>
+
+                    <!-- Chart 3: Risk Score -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Risk Score</h4>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; border: 8px solid rgba(255,255,255,0.05); 
+                                border-top-color: var(--gold); border-right-color: var(--gold); display: flex; align-items: center; 
+                                justify-content: center; font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold);">
+                                6.5
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 1rem;">Moderate Risk</p>
+                    </div>
+
+                    <!-- Chart 4: Dividend Income -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Dividend Yield</h4>
+                        <svg viewBox="0 0 100 40" style="width: 100%; height: 100px;">
+                            <defs>
+                                <linearGradient id="divGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:var(--gold);stop-opacity:0.3" />
+                                    <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M0,35 L25,30 L50,28 L75,25 L100,20" fill="none" stroke="var(--gold)" stroke-width="2" />
+                            <path d="M0,35 L25,30 L50,28 L75,25 L100,20 V40 H0 Z" fill="url(#divGrad)" />
+                        </svg>
+                        <div style="text-align: center; font-size: 1rem; color: var(--gold); margin-top: 1rem; font-family: var(--font-heading);">3.2% APY</div>
+                    </div>
+
+                    <!-- Chart 5: Portfolio Volatility -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Volatility Index</h4>
+                        <div style="height: 100px; position: relative;">
+                            <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
+                                <path d="M0,40 L20,35 L40,38 L60,30 L80,32 L100,25" fill="none" stroke="#44ff44" stroke-width="2" />
+                                <circle cx="100" cy="25" r="3" fill="#44ff44">
+                                    <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite" />
+                                </circle>
+                            </svg>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: #44ff44; margin-top: 1rem;">Low Volatility - Stable</p>
+                    </div>
+
+                    <!-- Chart 6: Gain/Loss Distribution -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Gain/Loss Ratio</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Gains</span><span style="color: #44ff44;">$185K</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                                    <div style="width: 75%; height: 100%; background: #44ff44; border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Losses</span><span style="color: #ff4444;">-$48K</span>
+                                </div>
+                                <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                                    <div style="width: 25%; height: 100%; background: #ff4444; border-radius: 4px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 7: Investment Timeline -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Investment Duration</h4>
+                        <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; height: 80px;">
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;" title="Jan"></div>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;" title="Feb"></div>
+                            <div style="background: rgba(255,255,255,0.15); border-radius: 2px;" title="Mar"></div>
+                            <div style="background: rgba(212, 175, 55, 0.3); border-radius: 2px;" title="Apr"></div>
+                            <div style="background: rgba(212, 175, 55, 0.4); border-radius: 2px;" title="May"></div>
+                            <div style="background: rgba(212, 175, 55, 0.5); border-radius: 2px;" title="Jun"></div>
+                            <div style="background: rgba(212, 175, 55, 0.6); border-radius: 2px;" title="Jul"></div>
+                            <div style="background: rgba(212, 175, 55, 0.7); border-radius: 2px;" title="Aug"></div>
+                            <div style="background: var(--gold); border-radius: 2px;" title="Sep"></div>
+                            <div style="background: var(--gold); border-radius: 2px;" title="Oct"></div>
+                            <div style="background: var(--gold); border-radius: 2px;" title="Nov"></div>
+                            <div style="background: var(--gold); border-radius: 2px;" title="Dec">
+                                <div style="width: 100%; height: 5px; background: var(--gold); animation: pulse 2s infinite;"></div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 1rem;">Active for 12 months</p>
+                    </div>
+
+                    <!-- Chart 8: Tax Efficiency -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Tax Efficiency</h4>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg viewBox="0 0 36 36" style="width: 100px; height: 100px;">
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#44ff44" stroke-width="3" 
+                                    stroke-dasharray="88, 100" transform="rotate(-90 18 18)" />
+                            </svg>
+                            <div style="position: absolute; font-family: var(--font-heading); font-size: 1.2rem; color: #44ff44;">
+                                88%
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 1rem;">Optimized Structure</p>
+                    </div>
+
+                    <!-- Chart 9: Benchmark Comparison -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">vs. S&P 500</h4>
+                        <div style="height: 100px; display: flex; align-items: flex-end; gap: 15px; padding: 0 20px;">
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 75px; background: var(--gold); border-radius: 4px 4px 0 0;"></div>
+                                <span style="font-size: 0.7rem; margin-top: 5px;">YOU</span>
+                            </div>
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 100%; height: 50px; background: rgba(255,255,255,0.2); border-radius: 4px 4px 0 0;"></div>
+                                <span style="font-size: 0.7rem; margin-top: 5px;">S&P</span>
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: #44ff44; margin-top: 1rem;">+8.5% Outperformance</p>
+                    </div>
+                </div>
             </div>
 
             <!-- SECTION: PORTFOLIO -->
@@ -256,7 +605,8 @@
                             <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Allocations</h3>
                             <p style="font-size: 0.8rem; color: #e0e0e0;">Current portfolio distribution by sector.</p>
                         </div>
-                        <div class="chart-donut">
+                        <div class="chart-donut"
+                            style="background: conic-gradient(var(--gold) 0% 65%, rgba(255,255,255,0.1) 65% 100%);">
                             <div class="chart-content">65%</div>
                         </div>
                         <div
@@ -310,12 +660,229 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Additional Portfolio Charts -->
+                <div class="grid-3" style="margin-top: 3rem;">
+                    <!-- Chart 1: Top Holdings -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Top 5 Holdings</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Tech ETF</span><span style="color: var(--gold);">18%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+                                    <div style="width: 18%; height: 100%; background: var(--gold); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Bonds</span><span>15%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+                                    <div style="width: 15%; height: 100%; background: rgba(212, 175, 55, 0.6); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Real Estate</span><span>12%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+                                    <div style="width: 12%; height: 100%; background: rgba(255,255,255,0.2); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Commodities</span><span>10%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+                                    <div style="width: 10%; height: 100%; background: rgba(255,255,255,0.15); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>Crypto</span><span>8%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px;">
+                                    <div style="width: 8%; height: 100%; background: rgba(255,255,255,0.1); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2: Rebalancing Recommendation -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Rebalancing Need</h4>
+                        <div style="height: 100px; display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; border: 6px solid rgba(255,255,255,0.05); 
+                                border-top-color: #44ff44; display: flex; align-items: center; justify-content: center; 
+                                font-family: var(--font-heading); font-size: 1.2rem; color: #44ff44;">
+                                LOW
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 1rem;">Portfolio is well balanced</p>
+                    </div>
+
+                    <!-- Chart 3: Cash Position -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Cash Reserve</h4>
+                        <svg viewBox="0 0 100 40" style="width: 100%; height: 100px;">
+                            <defs>
+                                <linearGradient id="cashGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#44ff44;stop-opacity:0.3" />
+                                    <stop offset="100%" style="stop-color:#44ff44;stop-opacity:0" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M0,30 L25,28 L50,25 L75,26 L100,24" fill="none" stroke="#44ff44" stroke-width="2" />
+                            <path d="M0,30 L25,28 L50,25 L75,26 L100,24 V40 H0 Z" fill="url(#cashGrad)" />
+                        </svg>
+                        <div style="text-align: center; font-size: 1.1rem; color: #44ff44; margin-top: 1rem; font-family: var(--font-heading);">$425K</div>
+                    </div>
+
+                    <!-- Chart 4: Sector Weights -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Sector Weights</h4>
+                        <div style="height: 100px; display: flex; align-items: flex-end; gap: 6px;">
+                            <div style="width: 100%; height: 70%; background: var(--gold); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 50%; background: rgba(212, 175, 55, 0.7); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 85%; background: var(--gold); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 40%; background: rgba(255,255,255,0.15); border-radius: 2px 2px 0 0;"></div>
+                            <div style="width: 100%; height: 60%; background: rgba(212, 175, 55, 0.5); border-radius: 2px 2px 0 0;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.55rem; margin-top: 0.5rem; color: var(--text-muted);">
+                            <span>TECH</span><span>FIN</span><span>HEALTH</span><span>CONS</span><span>IND</span>
+                        </div>
+                    </div>
+
+                    <!-- Chart 5: Projected Growth -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">12-Month Projection</h4>
+                        <div style="height: 100px; position: relative;">
+                            <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
+                                <defs>
+                                    <linearGradient id="projGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:var(--gold);stop-opacity:0.4" />
+                                        <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,40 L25,35 L50,28 L75,22 L100,15" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5,3" />
+                                <path d="M0,40 L25,35 L50,28 L75,22 L100,15 V50 H0 Z" fill="url(#projGrad)" />
+                            </svg>
+                        </div>
+                        <div style="text-align: center; font-size: 0.9rem; color: var(--gold); margin-top: 1rem; font-family: var(--font-heading);">+$380K Est.</div>
+                    </div>
+
+                    <!-- Chart 6: Investment Style -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Style Analysis</h4>
+                        <div style="height: 100px; display: flex; gap: 8px;">
+                            <div style="width: 30%; background: var(--gold); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold;">
+                                GROWTH
+                            </div>
+                            <div style="width: 50%; background: rgba(212, 175, 55, 0.5); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;">
+                                BLEND
+                            </div>
+                            <div style="width: 20%; background: rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;">
+                                VALUE
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.65rem; margin-top: 1rem; color: var(--text-muted);">
+                            <span>30%</span><span>50%</span><span>20%</span>
+                        </div>
+                    </div>
+
+                    <!-- Chart 7: Geographic Exposure -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Geographic Mix</h4>
+                        <div style="height: 100px; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <svg viewBox="0 0 36 36" style="width: 100px; height: 100px;">
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--gold)" stroke-width="3" 
+                                    stroke-dasharray="45, 100" transform="rotate(-90 18 18)" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#44ff44" stroke-width="3" 
+                                    stroke-dasharray="30, 100" transform="rotate(72 18 18)" />
+                                <circle cx="18" cy="18" r="15.9155" fill="none" stroke="orange" stroke-width="3" 
+                                    stroke-dasharray="25, 100" transform="rotate(180 18 18)" />
+                            </svg>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: center; font-size: 0.6rem; margin-top: 1rem;">
+                            <span>🇺🇸 45%</span><span>🇪🇺 30%</span><span>🌏 25%</span>
+                        </div>
+                    </div>
+
+                    <!-- Chart 8: ESG Score -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">ESG Rating</h4>
+                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; height: 60px;">
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: #44ff44; border-radius: 2px;"></div>
+                            <div style="background: var(--gold); border-radius: 2px;"></div>
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 2px;"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 1rem; color: var(--gold); margin-top: 1.5rem; font-family: var(--font-heading);">
+                            B+ Rating
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <!-- SECTION: ANALYTICS -->
             <div id="sec-analytics" class="dash-section" style="display: none;">
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Performance Analytics</h3>
+                <div class="holo-card" style="padding: 2rem; margin-bottom: 3rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <div>
+                            <span class="display-text">Annual Growth</span>
+                            <div style="font-size: 2rem; font-family: var(--font-heading); color: #44ff44;">+24.8%</div>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button class="btn-outline"
+                                style="padding: 0.3rem 0.8rem; font-size: 0.7rem; border-color: var(--gold); color: var(--gold);">12M</button>
+                            <button class="btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.7rem;">6M</button>
+                            <button class="btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.7rem;">1M</button>
+                        </div>
+                    </div>
+                    <!-- CSS/SVG Line Chart -->
+                    <div
+                        style="position: relative; height: 300px; width: 100%; border-left: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <svg viewBox="0 0 1000 300" style="width: 100%; height: 100%; overflow: visible;">
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:var(--gold);stop-opacity:0.2" />
+                                    <stop offset="100%" style="stop-color:var(--gold);stop-opacity:0" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Grid Lines -->
+                            <line x1="0" y1="75" x2="1000" y2="75" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+                            <line x1="0" y1="150" x2="1000" y2="150" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+                            <line x1="0" y1="225" x2="1000" y2="225" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+
+                            <!-- The Line -->
+                            <path
+                                d="M0,250 C100,240 150,200 250,180 C350,160 400,220 500,150 C600,80 700,120 800,90 C900,60 950,20 1000,10"
+                                fill="url(#grad1)" stroke="var(--gold)" stroke-width="3" />
+
+                            <!-- Data Points -->
+                            <circle cx="0" cy="250" r="4" fill="#000" stroke="var(--gold)" stroke-width="2" />
+                            <circle cx="250" cy="180" r="4" fill="#000" stroke="var(--gold)" stroke-width="2" />
+                            <circle cx="500" cy="150" r="4" fill="#000" stroke="var(--gold)" stroke-width="2" />
+                            <circle cx="750" cy="105" r="4" fill="#000" stroke="var(--gold)" stroke-width="2" />
+                            <circle cx="1000" cy="10" r="4" fill="#000" stroke="var(--gold)" stroke-width="2" />
+                        </svg>
+
+                        <!-- Tooltip Overlay (Mockup) -->
+                        <div
+                            style="position: absolute; top: 10px; right: 0; background: rgba(0,0,0,0.8); padding: 0.5rem 1rem; border: 1px solid var(--gold); border-radius: 4px;">
+                            <div style="font-size: 0.7rem; color: #888;">Current Valuation</div>
+                            <div style="color: white; font-weight: bold;">$2,450,000</div>
+                        </div>
+                    </div>
+                </div>
+
                 <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Recent Intelligence</h3>
-                <div class="glass-card" style="padding: 0;">
+                <div class="glass-card" style="padding: 0; margin-bottom: 3rem;">
                     <table class="table" style="margin: 0;">
                         <thead>
                             <tr>
@@ -347,11 +914,262 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- NEW ANALYTICS CHARTS -->
+                <div class="grid-2" style="gap: 2rem;">
+                    <!-- Chart 1: Sector Exposure -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Sector
+                            Exposure</h4>
+                        <div style="height: 200px; display: flex; align-items: flex-end; gap: 10px;">
+                            <div style="flex: 1; height: 85%; background: var(--gold); position: relative;"
+                                title="Tech">
+                                <span
+                                    style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 0.6rem;">TECH</span>
+                            </div>
+                            <div style="flex: 1; height: 45%; background: rgba(255,255,255,0.1); position: relative;"
+                                title="Energy">
+                                <span
+                                    style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 0.6rem;">ENERGY</span>
+                            </div>
+                            <div style="flex: 1; height: 65%; background: var(--gold); opacity: 0.6; position: relative;"
+                                title="Finance">
+                                <span
+                                    style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 0.6rem;">FIN</span>
+                            </div>
+                            <div style="flex: 1; height: 30%; background: rgba(255,255,255,0.1); position: relative;"
+                                title="Health">
+                                <span
+                                    style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 0.6rem;">HEALTH</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2: Regional Performance -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Regional
+                            Yields</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <div
+                                    style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>AMERICAS</span><span>+14.2%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05);">
+                                    <div style="width: 75%; height: 100%; background: var(--gold);"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>EUROPE</span><span>+8.5%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05);">
+                                    <div style="width: 45%; height: 100%; background: var(--gold); opacity: 0.7;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    style="display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 0.3rem;">
+                                    <span>ASIA</span><span>+19.1%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05);">
+                                    <div style="width: 90%; height: 100%; background: var(--gold);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 3: Liquidity Ratio -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Liquidity
+                            Snapshot</h4>
+                        <div style="display: flex; justify-content: center; align-items: center; height: 120px;">
+                            <div
+                                style="width: 100px; height: 100px; border-radius: 50%; border: 8px solid rgba(255,255,255,0.05); border-top-color: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading);">
+                                72%
+                            </div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 1rem;">
+                            Optimum capital availability for Q1 deployments.</p>
+                    </div>
+
+                    <!-- Chart 4: Risk Profile -->
+                    <div class="holo-card" style="padding: 2rem;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">Risk
+                            Distribution</h4>
+                        <div style="height: 120px; position: relative;">
+                            <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
+                                <path d="M10,40 Q50,10 90,40" fill="none" stroke="rgba(255,255,255,0.1)"
+                                    stroke-width="4" />
+                                <circle cx="70" cy="22" r="4" fill="var(--gold)" />
+                            </svg>
+                            <div style="text-align: center; font-size: 0.8rem; color: var(--gold);">MODERATE-HIGH</div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 5: Wealth Diversification -->
+                    <div class="holo-card" style="padding: 2rem; grid-column: span 1;">
+                        <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem;">
+                            Diversification</h4>
+                        <div style="height: 100px; display: flex; gap: 5px;">
+                            <div style="width: 20%; height: 100%; background: var(--gold);"></div>
+                            <div style="width: 15%; height: 100%; background: rgba(212, 175, 55, 0.6);"></div>
+                            <div style="width: 25%; height: 100%; background: rgba(212, 175, 55, 0.4);"></div>
+                            <div style="width: 40%; height: 100%; background: rgba(255,255,255,0.05);"></div>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.6rem; margin-top: 0.5rem; color: var(--text-muted);">
+                            <span>CORE</span><span>STOCKS</span><span>REAL ESTATE</span><span>CASH</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- SECTION: MARKET -->
             <div id="sec-market" class="dash-section" style="display: none;">
                 <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Global Market Analysis</h3>
+
+                <!-- Main Technical Chart -->
+                <div class="holo-card" style="padding: 2rem; margin-bottom: 3rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <div>
+                            <span class="display-text">AURUM GLOBAL INDEX (AGI)</span>
+                            <div style="display: flex; align-items: baseline; gap: 1rem;">
+                                <div style="font-size: 2rem; font-family: var(--font-heading);">4,289.45</div>
+                                <div style="color: #44ff44; font-size: 0.9rem;">+12.5 (0.35%)</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 2rem; font-size: 0.8rem; color: var(--text-muted);">
+                            <div>High: <span style="color: white;">4,295.00</span></div>
+                            <div>Low: <span style="color: white;">4,250.20</span></div>
+                            <div>Vol: <span style="color: white;">2.4B</span></div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="position: relative; height: 350px; width: 100%; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2);">
+                        <!-- Grid -->
+                        <div
+                            style="position: absolute; top: 25%; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.05);">
+                        </div>
+                        <div
+                            style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.05);">
+                        </div>
+                        <div
+                            style="position: absolute; top: 75%; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.05);">
+                        </div>
+                        <div
+                            style="position: absolute; top: 0; left: 25%; bottom: 0; width: 1px; background: rgba(255,255,255,0.05);">
+                        </div>
+                        <div
+                            style="position: absolute; top: 0; left: 50%; bottom: 0; width: 1px; background: rgba(255,255,255,0.05);">
+                        </div>
+                        <div
+                            style="position: absolute; top: 0; left: 75%; bottom: 0; width: 1px; background: rgba(255,255,255,0.05);">
+                        </div>
+
+                        <!-- SVG Candlesticks -->
+                        <svg viewBox="0 0 1000 350" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+                            <!-- Moving Averages -->
+                            <path d="M0,280 Q250,260 500,200 T1000,100" fill="none" stroke="#2196F3" stroke-width="2"
+                                opacity="0.5" />
+                            <path d="M0,300 Q250,290 500,240 T1000,150" fill="none" stroke="#E91E63" stroke-width="2"
+                                opacity="0.5" />
+
+                            <!-- Candles (Simplified Construction) -->
+                            <!-- X spacing approx 40px -->
+                            <g stroke="var(--text-muted)" stroke-width="1">
+                                <!-- Candle 1 Bullish -->
+                                <line x1="50" y1="280" x2="50" y2="330" />
+                                <rect x="40" y="290" width="20" height="30" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 2 Bearish -->
+                                <line x1="100" y1="280" x2="100" y2="340" />
+                                <rect x="90" y="300" width="20" height="20" fill="#222" stroke="var(--gold)" />
+
+                                <!-- Candle 3 Bullish -->
+                                <line x1="150" y1="280" x2="150" y2="250" />
+                                <rect x="140" y="260" width="20" height="40" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 4 Bullish -->
+                                <line x1="200" y1="260" x2="200" y2="220" />
+                                <rect x="190" y="230" width="20" height="30" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 5 Bearish (Pullback) -->
+                                <line x1="250" y1="220" x2="250" y2="260" />
+                                <rect x="240" y="230" width="20" height="20" fill="#222" stroke="var(--gold)" />
+
+                                <!-- Candle 6 Bullish -->
+                                <line x1="300" y1="250" x2="300" y2="200" />
+                                <rect x="290" y="210" width="20" height="35" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 7 Bullish -->
+                                <line x1="350" y1="210" x2="350" y2="180" />
+                                <rect x="340" y="190" width="20" height="20" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 8 Bearish -->
+                                <line x1="400" y1="180" x2="400" y2="220" />
+                                <rect x="390" y="190" width="20" height="25" fill="#222" stroke="var(--gold)" />
+
+                                <!-- Candle 9 Bullish -->
+                                <line x1="450" y1="220" x2="450" y2="170" />
+                                <rect x="440" y="180" width="20" height="30" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 10 Bullish (Breakout) -->
+                                <line x1="500" y1="180" x2="500" y2="120" />
+                                <rect x="490" y="130" width="20" height="40" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 11 Doji -->
+                                <line x1="550" y1="120" x2="550" y2="140" />
+                                <rect x="540" y="128" width="20" height="4" fill="#222" stroke="var(--gold)" />
+
+                                <!-- Candle 12 Bearish -->
+                                <line x1="600" y1="125" x2="600" y2="160" />
+                                <rect x="590" y="130" width="20" height="20" fill="#222" stroke="var(--gold)" />
+
+                                <!-- Candle 13 Bullish -->
+                                <line x1="650" y1="160" x2="650" y2="110" />
+                                <rect x="640" y="120" width="20" height="30" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 14 Bullish -->
+                                <line x1="700" y1="120" x2="700" y2="80" />
+                                <rect x="690" y="90" width="20" height="30" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 15 Doji/High -->
+                                <line x1="750" y1="80" x2="750" y2="95" />
+                                <rect x="740" y="85" width="20" height="2" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 16 Bearish -->
+                                <line x1="800" y1="80" x2="800" y2="110" />
+                                <rect x="790" y="85" width="20" height="20" fill="#222" stroke="var(--gold)" />
+
+                                <!-- Candle 17 Bullish -->
+                                <line x1="850" y1="110" x2="850" y2="60" />
+                                <rect x="840" y="70" width="20" height="35" fill="var(--gold)" stroke="none" />
+
+                                <!-- Candle 18 Bullish -->
+                                <line x1="900" y1="70" x2="900" y2="40" />
+                                <rect x="890" y="45" width="20" height="25" fill="var(--gold)" stroke="none" />
+
+                                <!-- Current Candle (Active) -->
+                                <line x1="950" y1="45" x2="950" y2="20" />
+                                <rect x="940" y="25" width="20" height="15" fill="var(--gold)" stroke="none">
+                                    <animate attributeName="opacity" values="1;0.7;1" dur="2s"
+                                        repeatCount="indefinite" />
+                                </rect>
+                            </g>
+                        </svg>
+
+                        <!-- Price Tag -->
+                        <div
+                            style="position: absolute; right: 0; top: 18%; background: var(--gold); color: black; font-size: 0.7rem; padding: 2px 6px; font-weight: bold;">
+                            4,289.45
+                        </div>
+                    </div>
+                </div>
+
                 <div class="grid-3">
                     <div class="holo-card" style="padding: 1.5rem;">
                         <div style="font-size: 0.8rem; color: var(--gold); margin-bottom: 0.5rem;">FOREX</div>
